@@ -1,0 +1,20 @@
+import React from 'react';
+import {SpotifyAuth } from 'react-spotify-auth';
+import {CLIENT_ID, REDIRECT_URI} from '../services/spotify/config';
+
+interface Props{
+    scopes?:[]
+}
+
+const SpotifyLoginButton:React.FC<Props> = ({scopes = ['user-read-email']}) => {
+    return (
+        <SpotifyAuth
+            redirectUri={REDIRECT_URI}
+            clientID={CLIENT_ID}
+            scopes={scopes} 
+            title="Entra con Spotify!"
+        />
+    );
+};
+
+export default SpotifyLoginButton;
