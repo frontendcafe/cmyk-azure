@@ -1,7 +1,6 @@
-import React from "react";
-import img from "./img1.jpg";
-
-import styled from "styled-components";
+import styled from 'styled-components';
+import React from 'react';
+import img from './img1.jpg';
 
 interface PlayList {
   id: number;
@@ -55,7 +54,7 @@ const PlayListCard: React.FC<Props> = ({ playList }) => {
       <CardHeader>
         <span>{playList.name}</span> <UserName>{playList.userName}</UserName>
       </CardHeader>
-      <CardBody></CardBody>
+      <CardBody>x</CardBody>
       <CardFooter>
         <span>❤</span>
       </CardFooter>
