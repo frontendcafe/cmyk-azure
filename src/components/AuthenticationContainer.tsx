@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Cookies from 'js-cookie';
+import SpotifyToken from '../services/spotify/token';
 import { SpotifyApiContext } from 'react-spotify-api';
 import SpotifyLoginButton from './SpotifyLoginButton';
 import { SpotifyAuthListener } from 'react-spotify-auth';
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const AuthenticationContainer: React.FC<Props> = ({ children }) => {
-  let initialToken = Cookies.get('spotifyAuthToken');
+  let initialToken = SpotifyToken.getActualToken();
   const [token, setToken] = useState<string>(initialToken ?? '');
 
   return (
