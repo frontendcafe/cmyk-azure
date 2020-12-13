@@ -13,11 +13,11 @@ interface Props {
   imageUrl?: string;
   url?: string;
   songs?: Song[] | [];
-  user?: User;
+  user?: any;
   owner?: any;
   recommendations?: Recomendation[] | [];
-  songsCount: number;
-  tracks: any;
+  songsCount?: number;
+  tracks?: any;
 }
 
 export default class Playlist extends Model {
@@ -28,6 +28,8 @@ export default class Playlist extends Model {
   private _songsCount: number | null;
 
   private _user: User | null;
+
+  private _owner: User | null;
 
   private _recommendations: Recomendation[] | null;
 
@@ -50,17 +52,22 @@ export default class Playlist extends Model {
     this._description = description ?? null;
     this._songs = songs ?? null;
     this._songsCount = songsCount ?? (tracks?.total ? tracks.total : null);
-    this._user = user || owner ? new User(user ?? owner) : null;
+    this._owner = owner ? new User(owner) : null;
     this._recommendations = recommendations ?? null;
+    this._user = user ? new User(user) : null;
   }
 
-  async fillUser() {
-    if (this._user) this._user.fill();
+  async fillOwner() {
+    if (this._owner) this._owner.fill();
   }
 
   async fillSongs() {
     if (this.id) {
       this._songs = await getPlaylistSongs(this.id);
     }
+  }
+
+  get user() {
+    return this._user;
   }
 }
