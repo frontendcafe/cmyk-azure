@@ -3,6 +3,7 @@ import SpotifyToken from '../services/spotify/token';
 import { SpotifyApiContext } from 'react-spotify-api';
 import SpotifyLoginButton from './SpotifyLoginButton';
 import { SpotifyAuthListener } from 'react-spotify-auth';
+import useSession from '../hooks/useSession';
 
 interface Props {
   children: React.ReactNode;
@@ -11,6 +12,7 @@ interface Props {
 const AuthenticationContainer: React.FC<Props> = ({ children }) => {
   let initialToken = SpotifyToken.getActualToken();
   const [token, setToken] = useState<string>(initialToken ?? '');
+  const { startSession } = useSession();
 
   return (
     <React.Fragment>
@@ -19,12 +21,13 @@ const AuthenticationContainer: React.FC<Props> = ({ children }) => {
           {children}
         </SpotifyApiContext.Provider>
       ) : (
-        <SpotifyLoginButton />
-      )}
+          <SpotifyLoginButton />
+        )}
 
       <SpotifyAuthListener
         onAccessToken={(token: string) => {
           setToken(token);
+          startSession();
         }}
       />
     </React.Fragment>
