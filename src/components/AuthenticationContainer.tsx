@@ -12,11 +12,11 @@ interface Props {
 const AuthenticationContainer: React.FC<Props> = ({ children }) => {
   let initialToken = SpotifyToken.getActualToken();
   const [token, setToken] = useState<string>(initialToken ?? '');
-  const { startSession } = useSession();
+  const { startSession, isLogged } = useSession();
 
   return (
     <React.Fragment>
-      {token ? (
+      {token && isLogged() ? (
         <SpotifyApiContext.Provider value={token}>
           {children}
         </SpotifyApiContext.Provider>

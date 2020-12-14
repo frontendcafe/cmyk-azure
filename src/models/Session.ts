@@ -3,7 +3,17 @@ export default class Session {
 
   private _token: string | null;
 
-  constructor({ createdAt, token, _createdAt, _token }: { createdAt?: Date, token?: string, _createdAt?: Date, _token?: string }) {
+  constructor({
+    createdAt,
+    token,
+    _createdAt,
+    _token,
+  }: {
+    createdAt?: Date;
+    token?: string;
+    _createdAt?: Date;
+    _token?: string;
+  }) {
     this._createdAt = _createdAt ?? createdAt ?? new Date();
     this._token = _token ?? token ?? null;
   }
@@ -13,7 +23,9 @@ export default class Session {
   }
 
   get createdAt() {
-    return typeof this._createdAt === 'string' ? new Date(this._createdAt) : this._createdAt;
+    return typeof this._createdAt === 'string'
+      ? new Date(this._createdAt)
+      : this._createdAt;
   }
 
   get isValid() {
