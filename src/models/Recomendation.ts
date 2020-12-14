@@ -1,7 +1,7 @@
 interface Props {
-  id?: string
-  user?: string
-  stars?: number
+  id?: string;
+  user?: string;
+  stars?: number;
 }
 
 export default class Recomendation {
