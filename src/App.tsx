@@ -22,9 +22,6 @@ const toggleLike = () => {
 };
 
 const App: React.FC = () => {
-  useEffect(() => {
-    getRecomendations().then((r) => console.log(r));
-  }, []);
   return (
     <div className="App">
       <header className="App-header">

@@ -3,4 +3,6 @@ import Cookies from 'js-cookie';
 const getActualToken = (): string | undefined =>
   Cookies.get('spotifyAuthToken');
 
-export default { getActualToken };
+const deleteActualToken = () => Cookies.remove('spotifyAuthToken');
+
+export default { getActualToken, deleteActualToken };
