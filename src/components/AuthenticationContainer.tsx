@@ -21,8 +21,8 @@ const AuthenticationContainer: React.FC<Props> = ({ children }) => {
           {children}
         </SpotifyApiContext.Provider>
       ) : (
-          <SpotifyLoginButton />
-        )}
+        <SpotifyLoginButton />
+      )}
 
       <SpotifyAuthListener
         onAccessToken={(token: string) => {
