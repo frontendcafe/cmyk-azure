@@ -70,4 +70,7 @@ export default class Playlist extends Model {
   get user() {
     return this._user;
   }
+  get songs() {
+    return this._songs;
+  }
 }
