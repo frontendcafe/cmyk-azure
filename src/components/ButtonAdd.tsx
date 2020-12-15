@@ -1,12 +1,16 @@
 import React from 'react';
-import FloatButton from './FloatButton';
+import ButtonFloat from './ButtonFloat';
 import IconAdd from './IconAdd';
 
-const ButtonAdd = () => {
+interface Props {
+  handleClick: Function;
+}
+
+const ButtonAdd: React.FC<Props> = ({ handleClick }) => {
   return (
-    <FloatButton>
+    <ButtonFloat handleClick={handleClick}>
       <IconAdd />
-    </FloatButton>
+    </ButtonFloat>
   );
 };
 

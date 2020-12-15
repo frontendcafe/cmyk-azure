@@ -1,15 +1,20 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
-import { ICON_FONT_SIZE, PRIMARY_COLOR, TEXT_PRIMARY_COLOR } from '../styles/variables';
+import {
+  ICON_FONT_SIZE,
+  PRIMARY_COLOR,
+  TEXT_PRIMARY_COLOR,
+} from '../styles/variables';
 
 interface Props {
   children: ReactNode;
   position?: 'BOTTOM_RIGHT';
+  handleClick?: Function;
 }
 
-const ButtonFloat = styled.button`
+const StyledFloatButton = styled.button`
   position: fixed;
-  cursor:pointer;
+  cursor: pointer;
   bottom: 1rem;
   right: 1rem;
   display: flex;
@@ -25,11 +30,19 @@ const ButtonFloat = styled.button`
   outline: none;
 `;
 
-const FloatButton: React.FC<Props> = ({
+const ButtonFloat: React.FC<Props> = ({
   children,
   position = 'BOTTOM_RIGHT',
+  handleClick,
 }) => {
-  return <ButtonFloat type="button">{children}</ButtonFloat>;
+  return (
+    <StyledFloatButton
+      type="button"
+      onClick={() => handleClick && handleClick()}
+    >
+      {children}
+    </StyledFloatButton>
+  );
 };
 
-export default FloatButton;
+export default ButtonFloat;
