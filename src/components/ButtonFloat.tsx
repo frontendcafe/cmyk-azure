@@ -16,7 +16,7 @@ const StyledFloatButton = styled.button`
   cursor: pointer;
   justify-self: end;
   align-self: flex-end;
-  margin:1rem;
+  margin: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
