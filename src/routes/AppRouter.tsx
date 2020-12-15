@@ -6,13 +6,13 @@ import NotFound from '../pages/NotFound';
 
 const AppRouter = () => {
   return (
-    <React.Fragment>
+    <>
       <Router>
         <Home path="/" />
         <Profile path="/:id" />
         <NotFound default />
       </Router>
-    </React.Fragment>
+    </>
   );
 };
 

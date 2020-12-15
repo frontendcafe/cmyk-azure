@@ -15,7 +15,7 @@ const AuthenticationContainer: React.FC<Props> = ({ children }) => {
   const { startSession, isLogged } = useSession();
 
   return (
-    <React.Fragment>
+    <>
       {token && isLogged() ? (
         <SpotifyApiContext.Provider value={token}>
           {children}
@@ -30,7 +30,7 @@ const AuthenticationContainer: React.FC<Props> = ({ children }) => {
           startSession();
         }}
       />
-    </React.Fragment>
+    </>
   );
 };
 

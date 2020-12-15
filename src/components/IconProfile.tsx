@@ -4,23 +4,15 @@ import styled from 'styled-components';
 import { ICON_FONT_SIZE } from '../styles/variables';
 
 interface Props {
-  imageUrl?: string
+  imageUrl?: string;
 }
 
 const StyledIconProfile = styled(MdAccountCircle)`
-  font-size: ${ICON_FONT_SIZE}
+  font-size: ${ICON_FONT_SIZE};
 `;
 
 const IconProfile: React.FC<Props> = ({ imageUrl }) => {
-  return (
-    <React.Fragment>
-      {
-        imageUrl ?
-          <img src={imageUrl} />
-          : <StyledIconProfile />
-      }
-    </React.Fragment>
-  );
+  return <>{imageUrl ? <img src={imageUrl} /> : <StyledIconProfile />}</>;
 };
 
 export default IconProfile;
