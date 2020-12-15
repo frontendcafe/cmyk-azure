@@ -1,6 +1,6 @@
 import React, { forwardRef, ReactNode, useImperativeHandle } from 'react';
 import styled from 'styled-components';
-import { ICON_FONT_SIZE } from '../styles/variables';
+import { BACKGROUND_COLOR, ICON_FONT_SIZE } from '../styles/variables';
 import ButtonClose from './ButtonClose';
 
 interface Props {
@@ -18,8 +18,8 @@ const StyledModal = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 99999;
+  background-color: rgba(256, 256, 256, 0.1);
+  z-index: 10;
   opacity: 0;
   -webkit-transition: opacity 100ms ease-in;
   -moz-transition: opacity 100ms ease-in;
@@ -37,7 +37,7 @@ const StyledDivContent = styled.div`
   position: relative;
   padding: 20px;
   border-radius: 3px;
-  background: #fff;
+  background-color: ${BACKGROUND_COLOR};
 `;
 
 const StyledButtonClose = styled.div`
