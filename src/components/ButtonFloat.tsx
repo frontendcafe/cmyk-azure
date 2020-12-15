@@ -13,10 +13,10 @@ interface Props {
 }
 
 const StyledFloatButton = styled.button`
-  position: fixed;
   cursor: pointer;
-  bottom: 1rem;
-  right: 1rem;
+  justify-self: end;
+  align-self: flex-end;
+  margin:1rem;
   display: flex;
   justify-content: center;
   align-items: center;
