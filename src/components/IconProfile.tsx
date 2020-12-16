@@ -12,11 +12,7 @@ const StyledIconProfile = styled(MdAccountCircle)`
 `;
 
 const IconProfile: React.FC<Props> = ({ imageUrl }) => {
-  return (
-    <React.Fragment>
-      {imageUrl ? <img src={imageUrl} /> : <StyledIconProfile />}
-    </React.Fragment>
-  );
+  return <>{imageUrl ? <img src={imageUrl} /> : <StyledIconProfile />}</>;
 };
 
 export default IconProfile;
