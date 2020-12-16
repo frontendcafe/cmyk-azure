@@ -7,6 +7,7 @@ export const SECONDARY_FONT_FAMILY = 'Merriweather';
 export const TEXT_PRIMARY_COLOR = '#FFF';
 export const ICON_FONT_SIZE = '2rem';
 export const LONG_FONT_SIZE = '2rem';
+export const MIN_FONT_SIZE = '.875rem';
 
 export const LIGHT_FONT_WEIGHT = '300';
 export const NORMAL_FONT_WEIGHT = '400';

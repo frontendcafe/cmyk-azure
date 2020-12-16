@@ -9,7 +9,7 @@ interface Props {
 }
 
 const StyledPlaylistDetail = styled.section`
-  padding: 1rem;
+  padding: 0 1rem;
 `;
 
 const PlaylistDetail: React.FC<Props> = ({ playlist }) => {
