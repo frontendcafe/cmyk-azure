@@ -20,7 +20,7 @@ const StyledList = styled.ul`
 
 const StyledMoreSongs = styled.p`
   text-align: center;
-  margin:0;
+  margin: 0;
   font-size: ${MIN_FONT_SIZE};
 `;
 
@@ -31,14 +31,17 @@ const ListSongs: React.FC<Props> = ({ songs, limit = 10 }) => {
     <>
       <StyledList>
         {songs &&
-          songs.sort((a: Song, b: Song) => a.popularity > b.popularity ? -1 : 1).slice(0, limit).map((song) => (
-            <li key={`li-${song.id}`}>
-              <ItemSong song={song} key={`ItemSong-${song.id}`} />
-            </li>
-          ))}
+          songs
+            .sort((a: Song, b: Song) => (a.popularity > b.popularity ? -1 : 1))
+            .slice(0, limit)
+            .map((song) => (
+              <li key={`li-${song.id}`}>
+                <ItemSong song={song} key={`ItemSong-${song.id}`} />
+              </li>
+            ))}
       </StyledList>
       <StyledMoreSongs>
-        {(moreSongs && moreSongs > 0) ? `${moreSongs} canciones mas...` : ''}
+        {moreSongs && moreSongs > 0 ? `${moreSongs} canciones mas...` : ''}
       </StyledMoreSongs>
     </>
   );

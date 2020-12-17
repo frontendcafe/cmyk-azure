@@ -7,7 +7,10 @@ import PlaylistDetail from '../components/PlaylistDetail';
 import RecommendationForm from '../components/RecomendationForm';
 import Playlist from '../models/Playlist';
 import { getRecomendations } from '../services/firebase/recommendations';
-import { getActualUserPlaylists, getPlaylistById } from '../services/spotify/playlist';
+import {
+  getActualUserPlaylists,
+  getPlaylistById,
+} from '../services/spotify/playlist';
 import { randomBetween } from '../utils/randomBetween';
 
 interface PlayList {
@@ -81,21 +84,25 @@ const Home = () => {
   };
 
   useEffect(() => {
-    getRecomendations()
-      .then(async recommendedPlaylists => {
-        const spotifyPlaylists = recommendedPlaylists ? await Promise.all(recommendedPlaylists.map(async playlist => {
-          const sPlaylist = playlist.id ? await getPlaylistById(playlist.id) : null;
-          if (sPlaylist) await sPlaylist.fillSongs();
-          return sPlaylist;
-        })) : null;
+    getRecomendations().then(async (recommendedPlaylists) => {
+      const spotifyPlaylists = recommendedPlaylists
+        ? await Promise.all(
+            recommendedPlaylists.map(async (playlist) => {
+              const sPlaylist = playlist.id
+                ? await getPlaylistById(playlist.id)
+                : null;
+              if (sPlaylist) await sPlaylist.fillSongs();
+              return sPlaylist;
+            })
+          )
+        : null;
 
-
-        if (spotifyPlaylists) {
-          const filteredPlaylists: any = spotifyPlaylists.filter(p => p);
-          setRecomendations(filteredPlaylists);
-        }
-      })
-  }, [])
+      if (spotifyPlaylists) {
+        const filteredPlaylists: any = spotifyPlaylists.filter((p) => p);
+        setRecomendations(filteredPlaylists);
+      }
+    });
+  }, []);
 
   return (
     <>

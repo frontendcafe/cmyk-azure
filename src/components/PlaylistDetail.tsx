@@ -1,7 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import Playlist from '../models/Playlist';
-import { GREY_COLOR, MIN_FONT_SIZE, NORMAL_FONT_SIZE, PRIMARY_COLOR } from '../styles/variables';
+import {
+  GREY_COLOR,
+  MIN_FONT_SIZE,
+  NORMAL_FONT_SIZE,
+  PRIMARY_COLOR,
+} from '../styles/variables';
 import IconExternalLink from './IconExternalLink';
 import ListSongs from './ListSongs';
 import Title from './Title';
@@ -23,7 +28,7 @@ const StyledSpanRecommended = styled.span`
 const StyledExternalLink = styled.a`
   color: ${PRIMARY_COLOR};
   font-size: ${NORMAL_FONT_SIZE};
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 `;
 
 const PlaylistDetail: React.FC<Props> = ({ playlist }) => {

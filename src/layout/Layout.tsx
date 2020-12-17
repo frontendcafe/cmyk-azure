@@ -32,7 +32,6 @@ const Layout = () => {
   };
 
   return (
-
     <StyledLayout>
       <header>
         <Navbar />
@@ -40,7 +39,6 @@ const Layout = () => {
       <AuthenticationContainer>
         <Switch>{getRoutes(Routes)}</Switch>
       </AuthenticationContainer>
-
     </StyledLayout>
   );
 };
