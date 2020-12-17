@@ -16,7 +16,6 @@ interface Props {
 }
 
 const StyledPlaylistDetail = styled.section`
-  padding: 0 1rem;
   margin: 2rem 0;
 `;
 
@@ -36,7 +35,7 @@ const PlaylistDetail: React.FC<Props> = ({ playlist }) => {
     <>
       {playlist && (
         <StyledPlaylistDetail>
-          <StyledSpanRecommended>Recomendado</StyledSpanRecommended>
+          <StyledSpanRecommended>Recommended</StyledSpanRecommended>
           <Title>
             <span>{playlist.name}</span>
             <StyledExternalLink href={playlist.url ?? ''} target="_blank">

@@ -41,7 +41,7 @@ const ListSongs: React.FC<Props> = ({ songs, limit = 10 }) => {
             ))}
       </StyledList>
       <StyledMoreSongs>
-        {moreSongs && moreSongs > 0 ? `${moreSongs} canciones mas...` : ''}
+        {moreSongs && moreSongs > 0 ? `${moreSongs} songs more...` : ''}
       </StyledMoreSongs>
     </>
   );
