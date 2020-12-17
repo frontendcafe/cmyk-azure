@@ -4,6 +4,7 @@ import { BACKGROUND_COLOR, TEXT_PRIMARY_COLOR } from '../styles/variables';
 import Navbar from '../components/Navbar';
 import { Switch, Route } from 'react-router-dom';
 import Routes from '../routes';
+import AuthenticationContainer from '../components/AuthenticationContainer';
 
 const StyledLayout = styled.div`
   background-color: ${BACKGROUND_COLOR};
@@ -31,11 +32,15 @@ const Layout = () => {
   };
 
   return (
+
     <StyledLayout>
       <header>
         <Navbar />
       </header>
-      <Switch>{getRoutes(Routes)}</Switch>
+      <AuthenticationContainer>
+        <Switch>{getRoutes(Routes)}</Switch>
+      </AuthenticationContainer>
+
     </StyledLayout>
   );
 };

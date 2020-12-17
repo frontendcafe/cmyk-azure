@@ -1,9 +1,14 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ButtonAdd from '../components/ButtonAdd';
 import FloatingFooter from '../components/FloatingFooter';
 import Modal from '../components/Modal';
 import PlayListCardList from '../components/PlayListCardList';
+import PlaylistDetail from '../components/PlaylistDetail';
 import RecommendationForm from '../components/RecomendationForm';
+import Playlist from '../models/Playlist';
+import { getRecomendations } from '../services/firebase/recommendations';
+import { getActualUserPlaylists, getPlaylistById } from '../services/spotify/playlist';
+import { randomBetween } from '../utils/randomBetween';
 
 interface PlayList {
   id: number;
@@ -67,9 +72,35 @@ const playListsMock: Array<PlayList> = [
 
 const Home = () => {
   const modalRecomendationForm = useRef<any>();
+  const [recomendations, setRecomendations] = useState<Playlist[] | null>(null);
+
+  const getRecommendation = (): Playlist | null => {
+    return recomendations
+      ? recomendations[randomBetween(0, recomendations?.length ?? 1 - 1)]
+      : null;
+  };
+
+  useEffect(() => {
+    getRecomendations()
+      .then(async recommendedPlaylists => {
+        const spotifyPlaylists = recommendedPlaylists ? await Promise.all(recommendedPlaylists.map(async playlist => {
+          const sPlaylist = playlist.id ? await getPlaylistById(playlist.id) : null;
+          if (sPlaylist) await sPlaylist.fillSongs();
+          return sPlaylist;
+        })) : null;
+
+
+        if (spotifyPlaylists) {
+          const filteredPlaylists: any = spotifyPlaylists.filter(p => p);
+          setRecomendations(filteredPlaylists);
+        }
+      })
+  }, [])
 
   return (
     <>
+      <PlayListCardList playLists={recomendations ?? []} isCarousel />
+      <PlaylistDetail playlist={getRecommendation()} />
       <Modal id="modal" ref={modalRecomendationForm} title="Recomenda!">
         <RecommendationForm />
       </Modal>

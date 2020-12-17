@@ -2,17 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import PlayListCard from './PlayListCard';
 import Carousel from 'react-elastic-carousel';
-
-interface PlayList {
-  id: number;
-  name: string;
-  userName: string;
-  url: string;
-  songs: Array<number>;
-}
+import Playlist from '../models/Playlist';
 
 interface Props {
-  playLists: Array<PlayList>;
+  playLists: Array<Playlist>;
   isCarousel: boolean;
 }
 

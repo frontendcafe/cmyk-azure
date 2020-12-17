@@ -1,17 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import Playlist from '../models/Playlist';
 import img from './img1.jpg';
 
-interface PlayList {
-  id: number;
-  name: string;
-  userName: string;
-  url: string;
-  songs: Array<number>;
-}
-
 interface Props {
-  playList: PlayList;
+  playList: Playlist;
   toggleLike: (id: number) => void;
 }
 const Card = styled.div`
@@ -51,7 +44,7 @@ const PlayListCard: React.FC<Props> = ({ playList }) => {
   return (
     <Card>
       <CardHeader>
-        <span>{playList.name}</span> <UserName>{playList.userName}</UserName>
+        <span>{playList.name}</span> <UserName>{playList.user?.name}</UserName>
       </CardHeader>
       <CardBody>x</CardBody>
       <CardFooter>
