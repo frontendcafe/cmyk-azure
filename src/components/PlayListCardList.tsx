@@ -26,15 +26,14 @@ const breakPointsCarousel = [
 ];
 
 const Container = styled.div`
-    .rec-dot {
-        box-shadow: 0 0 1px 2px #1292d3;
-    }
-    
-    .rec-dot_active{        
-        background-color: #1292d3;
-    }
-`
+  .rec-dot {
+    box-shadow: 0 0 1px 2px #1292d3;
+  }
 
+  .rec-dot_active {
+    background-color: #1292d3;
+  }
+`;
 
 const toggleLike = () => {
   console.log('Test toggleLike');
@@ -42,7 +41,6 @@ const toggleLike = () => {
 
 const PlayListCardList: React.FC<Props> = ({ playLists, isCarousel }) => {
   return (
-    
     <Container>
       <Carousel
         breakPoints={breakPointsCarousel}
@@ -53,7 +51,7 @@ const PlayListCardList: React.FC<Props> = ({ playLists, isCarousel }) => {
           <PlayListCard playList={list} toggleLike={toggleLike} />
         ))}
       </Carousel>
-      </Container>
+    </Container>
   );
 };
 

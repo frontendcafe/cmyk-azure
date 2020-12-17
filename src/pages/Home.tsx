@@ -70,10 +70,10 @@ const Home = () => {
   return (
     <>
       <Modal id="modal" ref={modalRecomendationForm} title="Recomenda!">
-        <RecomendationForm />
+        <RecommendationForm />
       </Modal>
       <ButtonAdd
-        handleClick={() => modalRecommendationForm?.current?.openModal()}
+        handleClick={() => modalRecomendationForm?.current?.openModal()}
       />
     </>
   );
