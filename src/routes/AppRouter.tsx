@@ -1,16 +1,19 @@
 import React from 'react';
-import { Router } from '@reach/router';
-import Home from '../pages/Home';
-import Profile from '../pages/Profile';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Layout from '../layout/Layout';
 import NotFound from '../pages/NotFound';
+import PrivateRoute from '../components/PrivateRoute';
 
 const AppRouter = () => {
   return (
     <>
       <Router>
-        <Home path="/" />
-        <Profile path="/:id" />
-        <NotFound default />
+        <Switch>
+          <PrivateRoute path="/">
+            <Layout />
+          </PrivateRoute>
+          <Route component={NotFound} />
+        </Switch>
       </Router>
     </>
   );

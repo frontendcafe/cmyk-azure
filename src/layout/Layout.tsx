@@ -1,11 +1,9 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import { BACKGROUND_COLOR, TEXT_PRIMARY_COLOR } from '../styles/variables';
-import Navbar from './Navbar';
-
-interface Props {
-  children: ReactNode;
-}
+import Navbar from '../components/Navbar';
+import { Switch, Route } from 'react-router-dom';
+import Routes from '../routes';
 
 const StyledLayout = styled.div`
   background-color: ${BACKGROUND_COLOR};
@@ -17,13 +15,26 @@ const StyledLayout = styled.div`
   justify-content: center;
 `;
 
-const Layout: React.FC<Props> = ({ children }) => {
+const Layout = () => {
+  const getRoutes = (routes: any): ReactNode => {
+    return routes.map((route: any) => {
+      return (
+        <Route
+          path={route.path}
+          component={route.component}
+          exact={route.exact && route.exact}
+          key={route.name}
+        />
+      );
+    });
+  };
+
   return (
     <StyledLayout>
       <header>
         <Navbar />
       </header>
-      {children}
+      <Switch>{getRoutes(Routes)}</Switch>
     </StyledLayout>
   );
 };

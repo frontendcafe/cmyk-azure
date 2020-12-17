@@ -1,7 +1,6 @@
-import { RouteComponentProps } from '@reach/router';
 import React from 'react';
 
-const NotFound = (props: RouteComponentProps) => {
+const NotFound = () => {
   return <div>NotFound</div>;
 };
 
