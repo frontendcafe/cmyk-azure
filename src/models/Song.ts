@@ -17,6 +17,12 @@ export default class Song extends Model {
 
   private _album: Model | null;
 
+  get artist() {
+    return this._artists && this._artists.length > 0
+      ? this._artists.map((artist) => artist.name).join(', ')
+      : '';
+  }
+
   constructor({
     id,
     url,
@@ -28,7 +34,12 @@ export default class Song extends Model {
   }: Props) {
     super({ id, name, url, external_urls });
     this._popularity = popularity ?? null;
-    this._album = album ? new Model(album) : null;
+
+    if (album) {
+      this._album = new Model(album);
+      this.imageUrl = this._album.imageUrl;
+    } else this._album = null;
+
     this._artists = artists
       ? artists.map((artist: any) => new Model(artist))
       : null;

@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import React from 'react';
+import styled from 'styled-components';
 import img from './img1.jpg';
 
 interface PlayList {
@@ -14,10 +14,9 @@ interface Props {
   playList: PlayList;
   toggleLike: (id: number) => void;
 }
-
 const Card = styled.div`
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   border: none;
   border-radius: 25px;
   display: flex;
