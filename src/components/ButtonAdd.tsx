@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonFloat from './ButtonFloat';
+import ButtonFloat from './ButtonCircle';
 import IconAdd from './IconAdd';
 
 interface Props {

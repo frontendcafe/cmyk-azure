@@ -14,7 +14,6 @@ interface Props {
 
 const StyledFloatButton = styled.button`
   cursor: pointer;
-  justify-self: end;
   align-self: flex-end;
   margin: 1rem;
   display: flex;
@@ -30,7 +29,7 @@ const StyledFloatButton = styled.button`
   outline: none;
 `;
 
-const ButtonFloat: React.FC<Props> = ({
+const ButtonCircle: React.FC<Props> = ({
   children,
   position = 'BOTTOM_RIGHT',
   handleClick,
@@ -45,4 +44,4 @@ const ButtonFloat: React.FC<Props> = ({
   );
 };
 
-export default ButtonFloat;
+export default ButtonCircle;

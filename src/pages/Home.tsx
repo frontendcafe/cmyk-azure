@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import ButtonAdd from '../components/ButtonAdd';
+import FloatingFooter from '../components/FloatingFooter';
 import Modal from '../components/Modal';
 import PlayListCardList from '../components/PlayListCardList';
 import RecommendationForm from '../components/RecomendationForm';
@@ -72,9 +73,11 @@ const Home = () => {
       <Modal id="modal" ref={modalRecomendationForm} title="Recomenda!">
         <RecommendationForm />
       </Modal>
-      <ButtonAdd
-        handleClick={() => modalRecomendationForm?.current?.openModal()}
-      />
+      <FloatingFooter>
+        <ButtonAdd
+          handleClick={() => modalRecomendationForm?.current?.openModal()}
+        />
+      </FloatingFooter>
     </>
   );
 };
