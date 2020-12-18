@@ -94,14 +94,14 @@ const Home = () => {
     getRecomendations().then(async (recommendedPlaylists) => {
       const spotifyPlaylists = recommendedPlaylists
         ? await Promise.all(
-            recommendedPlaylists.map(async (playlist) => {
-              const sPlaylist = playlist.id
-                ? await getPlaylistById(playlist.id)
-                : null;
-              if (sPlaylist) await sPlaylist.fillSongs();
-              return sPlaylist;
-            })
-          )
+          recommendedPlaylists.map(async (playlist) => {
+            const sPlaylist = playlist.id
+              ? await getPlaylistById(playlist.id)
+              : null;
+            if (sPlaylist) await sPlaylist.fillSongs();
+            return sPlaylist;
+          })
+        )
         : null;
 
       if (spotifyPlaylists) {
@@ -120,8 +120,8 @@ const Home = () => {
       <Title>Top recommendations</Title>
       <PlayListCardList playLists={recomendations ?? []} isCarousel />
       <PlaylistDetail playlist={getRecommendation()} />
-      <Modal id="modal" ref={modalRecomendationForm} title="Recomenda!">
-        <RecommendationForm />
+      <Modal id="modal" ref={modalRecomendationForm} showHeader={false}>
+        <RecommendationForm handleClose={modalRecomendationForm?.current?.closeModal} />
       </Modal>
       <FloatingFooter>
         <ButtonAdd

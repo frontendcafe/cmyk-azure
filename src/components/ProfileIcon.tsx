@@ -5,6 +5,9 @@ import Avatar from 'react-avatar';
 interface Props {
   imageUrl?: string;
   userName?: string;
+  onlyImage?: boolean;
+  imgSize?: string;
+  className?: string;
 }
 
 const Wrapper = styled.div`
@@ -29,15 +32,23 @@ const AvatarWrapper = styled.div`
  * @param {string} imageUrl
  * @param {string} userName
  */
-const ProfileIcon: React.FC<Props> = ({ imageUrl, userName }) => {
+const ProfileIcon: React.FC<Props> = ({ imageUrl, userName, className, onlyImage = false, imgSize = "100px" }) => {
+  const avatar = <Avatar src={imageUrl} round size={imgSize} className={onlyImage ? className : ''} />;
+
   return (
     <>
-      <Wrapper>
-        <AvatarWrapper>
-          <Avatar src={imageUrl} round />
-        </AvatarWrapper>
-        <Box>{userName}</Box>
-      </Wrapper>
+      {
+        onlyImage ?
+          avatar
+          :
+          <Wrapper className={className}>
+            <AvatarWrapper>
+              {avatar}
+            </AvatarWrapper>
+            <Box>{userName}</Box>
+          </Wrapper>
+      }
+
     </>
   );
 };

@@ -19,7 +19,6 @@ const useSession = () => {
 
   const isLogged = (): boolean => {
     const session: Session | null = getSession();
-
     if (session) {
       const token = SpotifyToken.getActualToken();
 

@@ -5,7 +5,8 @@ import img from './img1.jpg';
 
 interface Props {
   playList: Playlist;
-  toggleLike: (id: number) => void;
+  className?: string;
+  toggleLike?: (id: number) => void;
 }
 const Card = styled.div`
   width: 200px;
@@ -40,9 +41,9 @@ const CardFooter = styled.div`
   color: rgb(75 178 252);
 `;
 
-const PlayListCard: React.FC<Props> = ({ playList }) => {
+const PlayListCard: React.FC<Props> = ({ playList, className }) => {
   return (
-    <Card>
+    <Card className={className}>
       <CardHeader>
         <span>{playList.name}</span> <UserName>{playList.user?.name}</UserName>
       </CardHeader>
