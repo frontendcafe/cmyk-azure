@@ -84,8 +84,8 @@ const RecomendationForm: React.FC<Props> = ({ handleClose }) => {
           Recommend
         </StyledRecomendationButton>
       ) : (
-          ''
-        )}
+        ''
+      )}
       <StyledProfileIcon
         imageUrl={user?.imageUrl ?? ''}
         userName={user?.name ?? ''}
@@ -95,9 +95,9 @@ const RecomendationForm: React.FC<Props> = ({ handleClose }) => {
       {selectedPlaylist ? (
         <StyledPlayListCard playList={selectedPlaylist} />
       ) : (
-          // TODO: SearchComponent debe contener grid-area: card;
-          <p>SearchComponent</p>
-        )}
+        // TODO: SearchComponent debe contener grid-area: card;
+        <p>SearchComponent</p>
+      )}
     </StyledRecomendationForm>
   );
 };
