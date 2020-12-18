@@ -32,23 +32,32 @@ const AvatarWrapper = styled.div`
  * @param {string} imageUrl
  * @param {string} userName
  */
-const ProfileIcon: React.FC<Props> = ({ imageUrl, userName, className, onlyImage = false, imgSize = "100px" }) => {
-  const avatar = <Avatar src={imageUrl} round size={imgSize} className={onlyImage ? className : ''} />;
+const ProfileIcon: React.FC<Props> = ({
+  imageUrl,
+  userName,
+  className,
+  onlyImage = false,
+  imgSize = '100px',
+}) => {
+  const avatar = (
+    <Avatar
+      src={imageUrl}
+      round
+      size={imgSize}
+      className={onlyImage ? className : ''}
+    />
+  );
 
   return (
     <>
-      {
-        onlyImage ?
-          avatar
-          :
-          <Wrapper className={className}>
-            <AvatarWrapper>
-              {avatar}
-            </AvatarWrapper>
-            <Box>{userName}</Box>
-          </Wrapper>
-      }
-
+      {onlyImage ? (
+        avatar
+      ) : (
+        <Wrapper className={className}>
+          <AvatarWrapper>{avatar}</AvatarWrapper>
+          <Box>{userName}</Box>
+        </Wrapper>
+      )}
     </>
   );
 };

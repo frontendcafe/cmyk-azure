@@ -1,6 +1,10 @@
 import React, { forwardRef, ReactNode, useImperativeHandle } from 'react';
 import styled from 'styled-components';
-import { BACKGROUND_COLOR, ICON_FONT_SIZE } from '../styles/variables';
+import {
+  BACKGROUND_COLOR,
+  ICON_FONT_SIZE,
+  TABLET_BREAKPOINT,
+} from '../styles/variables';
 import ButtonClose from './ButtonClose';
 
 interface Props {
@@ -40,6 +44,12 @@ const StyledDivContent = styled.div`
   padding: 1rem;
   border-radius: 1rem;
   background-color: ${BACKGROUND_COLOR};
+  @media (max-width: ${TABLET_BREAKPOINT}) {
+    margin-top: 0;
+    height: 100%;
+    border-radius: 0;
+    width: 100%;
+  }
 `;
 
 const StyledButtonClose = styled.div`

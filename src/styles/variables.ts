@@ -14,3 +14,5 @@ export const MIN_FONT_SIZE = '.875rem';
 export const LIGHT_FONT_WEIGHT = '300';
 export const NORMAL_FONT_WEIGHT = '400';
 export const BOLD_FONT_WEIGHT = '700';
+
+export const TABLET_BREAKPOINT = '768px';

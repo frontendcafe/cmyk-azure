@@ -2,14 +2,15 @@ import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import UserContext from '../context/user/UserContext';
 import Playlist from '../models/Playlist';
+import { addRecommendation } from '../services/firebase/recommendations';
 import { getActualUserPlaylists } from '../services/spotify/playlist';
-import { LIGHT_FONT_WEIGHT } from '../styles/variables';
+import { LIGHT_FONT_WEIGHT, TABLET_BREAKPOINT } from '../styles/variables';
 import ButtonClose from './ButtonClose';
 import PlayListCard from './PlayListCard';
 import ProfileIcon from './ProfileIcon';
 
 interface Props {
-  handleClose?: Function
+  handleClose?: Function;
 }
 
 const StyledRecomendationForm = styled.form`
@@ -17,31 +18,37 @@ const StyledRecomendationForm = styled.form`
   display: grid;
   grid-gap: 2rem 0;
   grid-template-columns: 70px 1fr;
-  grid-template-areas: "close ."
-                      "profile card"
-                      ". recommendation"
+  grid-template-areas:
+    'close .'
+    'profile card'
+    '. recommendation';
 
+  @media (max-width: ${TABLET_BREAKPOINT}) {
+    grid-template-areas:
+      'close recommendation'
+      'profile .'
+      'card card';
+  }
 `;
 
 const StyledPlayListCard = styled(PlayListCard)`
   justify-self: center;
-  grid-area: card
+  grid-area: card;
 `;
-
 
 const StyledProfileIcon = styled(ProfileIcon)`
   grid-area: profile;
 `;
 
 const StyledRecomendationButton = styled.button`
-width:100px;
-justify-self: flex-end;
+  width: 100px;
+  justify-self: flex-end;
   grid-area: recommendation;
 `;
 
 const StyledButtonClose = styled(ButtonClose)`
-grid-area: close;
-justify-self: flex-start;
+  grid-area: close;
+  justify-self: flex-start;
 `;
 
 const RecomendationForm: React.FC<Props> = ({ handleClose }) => {
@@ -53,28 +60,42 @@ const RecomendationForm: React.FC<Props> = ({ handleClose }) => {
   );
   const { user } = useContext(UserContext);
 
+  const recommend = () => {
+    if (selectedPlaylist) {
+      selectedPlaylist.user = user;
+
+      addRecommendation(selectedPlaylist).then(
+        () => handleClose && handleClose()
+      );
+    }
+  };
+
   useEffect(() => {
     getActualUserPlaylists().then((userPlaylists) => {
       setPlaylists(userPlaylists);
-      setSelectedPlaylist(userPlaylists?.[1] ?? null);
     });
   }, []);
 
   return (
     <StyledRecomendationForm>
       <StyledButtonClose handleClick={() => handleClose && handleClose()} />
-      <StyledRecomendationButton>
-        Recomendar
+      {selectedPlaylist ? (
+        <StyledRecomendationButton onClick={recommend}>
+          Recommend
         </StyledRecomendationButton>
+      ) : (
+          ''
+        )}
       <StyledProfileIcon
         imageUrl={user?.imageUrl ?? ''}
         userName={user?.name ?? ''}
         onlyImage
-        imgSize="64px"
+        imgSize="60px"
       />
       {selectedPlaylist ? (
         <StyledPlayListCard playList={selectedPlaylist} />
       ) : (
+          // TODO: SearchComponent debe contener grid-area: card;
           <p>SearchComponent</p>
         )}
     </StyledRecomendationForm>
