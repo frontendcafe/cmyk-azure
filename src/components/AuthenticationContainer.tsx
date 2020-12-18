@@ -16,18 +16,18 @@ const AuthenticationContainer: React.FC<Props> = ({ children }) => {
 
   return (
     <>
-      {token && isLogged() ? (
+      {token && isLogged && isLogged() ? (
         <SpotifyApiContext.Provider value={token}>
           {children}
         </SpotifyApiContext.Provider>
       ) : (
-          <SpotifyLoginButton />
-        )}
+        <SpotifyLoginButton />
+      )}
 
       <SpotifyAuthListener
         onAccessToken={(token: string) => {
           setToken(token);
-          startSession();
+          startSession && startSession();
         }}
       />
     </>

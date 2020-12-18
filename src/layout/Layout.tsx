@@ -33,14 +33,12 @@ const Layout = () => {
 
   return (
     <UserProvider>
-
       <StyledLayout>
         <header>
           <Navbar />
         </header>
         <Switch>{getRoutes(Routes)}</Switch>
       </StyledLayout>
-
     </UserProvider>
   );
 };
