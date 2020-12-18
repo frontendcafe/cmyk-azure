@@ -5,24 +5,30 @@ import UserContext from "./UserContext"
 
 const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  const { getUser, suscribe, START_SESSION, STOP_SESSION } = useSession();
+  const { isLogged, startSession, getUser, suscribe, START_SESSION, STOP_SESSION } = useSession();
 
   useEffect(() => {
-    suscribe(receiveChanges)
+    suscribe(receiveChanges);
+    loadUser();
   }, []);
+
+  const loadUser = () => {
+    getUser().then((u: User | null) => setUser(u));
+  }
 
   const receiveChanges = (action: typeof START_SESSION | typeof STOP_SESSION) => {
     switch (action) {
       case START_SESSION: {
-        getUser().then((u: User | null) => setUser(u));
+        loadUser();
         break;
       }
       default: setUser(null);
     }
   }
 
-
-  return <UserContext.Provider value={{ user }}>
+  return <UserContext.Provider value={{ user, isLogged, startSession }}>
     {children}
   </UserContext.Provider>
 }
+
+export default UserProvider;
