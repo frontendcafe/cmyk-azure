@@ -4,7 +4,21 @@ import { getActualUser } from '../services/spotify/user';
 import { deleteData, getData, saveData, SESSION } from '../utils/manageData';
 import SpotifyToken from '../services/spotify/token';
 
+
+
 const useSession = () => {
+  const START_SESSION = 'START_SESSION';
+  const STOP_SESSION = 'STOP_SESSION';
+  const observers: Function[] = [];
+
+  const suscribe = (observer: Function) => {
+    observers.push(observer)
+  }
+
+  const notify = (action: typeof STOP_SESSION | typeof START_SESSION) => {
+    observers.forEach(obs => obs(action))
+  }
+
   const isLogged = (): boolean => {
     const session: Session | null = getSession();
 
@@ -26,6 +40,7 @@ const useSession = () => {
     const token = SpotifyToken.getActualToken();
     const session = new Session({ token });
     saveData(SESSION, session);
+    notify(START_SESSION);
   };
 
   const getSession = (): Session | null => {
@@ -42,9 +57,10 @@ const useSession = () => {
   const stopSession = () => {
     deleteData(SESSION);
     SpotifyToken.deleteActualToken();
+    notify(STOP_SESSION);
   };
 
-  return { isLogged, getUser, startSession, stopSession, getToken };
+  return { isLogged, getUser, startSession, stopSession, getToken, suscribe, START_SESSION, STOP_SESSION };
 };
 
 export default useSession;
