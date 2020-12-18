@@ -98,6 +98,7 @@ const Home = () => {
               const sPlaylist = playlist.id
                 ? await getPlaylistById(playlist.id)
                 : null;
+
               if (sPlaylist) await sPlaylist.fillSongs();
               return sPlaylist;
             })

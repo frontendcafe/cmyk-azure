@@ -16,7 +16,7 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-image: url(${img});
+  background-image: url(${(props : {imageUrl : string})  => props.imageUrl });
   background-repeat: no-repeat;
   background-size: cover;
 `;
@@ -42,8 +42,9 @@ const CardFooter = styled.div`
 `;
 
 const PlayListCard: React.FC<Props> = ({ playList, className }) => {
+  const urlImage = playList.imageUrl ? playList.imageUrl : 'Url default'
   return (
-    <Card className={className}>
+    <Card imageUrl={urlImage} className={className} >
       <CardHeader>
         <span>{playList.name}</span> <UserName>{playList.user?.name}</UserName>
       </CardHeader>
