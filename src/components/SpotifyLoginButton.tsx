@@ -8,7 +8,7 @@ interface Props {
 }
 
 const SpotifyLoginButton: React.FC<Props> = ({
-  scopes = ['user-read-email', 'playlist-read-private'],
+  scopes = ['user-read-email', 'playlist-read-private']
 }) => {
   return (
     <SpotifyAuth
