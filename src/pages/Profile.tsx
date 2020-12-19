@@ -1,13 +1,22 @@
-import React from 'react';
-
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import ProfileIcon from '../components/ProfileIcon';
+import User from '../models/User';
+import { getUserById } from '../services/spotify/user';
 
 const Profile = () => {
+  const { profileId }: { profileId: string } = useParams();
+  const [user, setUser] = useState<User | null>();
+
+  useEffect(() => {
+    getUserById(profileId).then((u: User | null) => setUser(u));
+  }, []);
+
   return (
     <>
       <ProfileIcon
-        userName="Renzo Tejada"
-        imageUrl="https://pm1.narvii.com/6533/74a6e18c1585abd38dfc1d5c2484ade0da83d79b_00.jpg"
+        imageUrl={user?.imageUrl ?? ''}
+        userName={user?.name ?? ''}
       />
     </>
   );

@@ -2,13 +2,14 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import {
+  ICON_FONT_SIZE,
   LONG_FONT_SIZE,
   PRIMARY_COLOR,
   SECONDARY_FONT_FAMILY,
   TEXT_PRIMARY_COLOR,
 } from '../styles/variables';
-import IconProfile from './IconProfile';
 import UserContext from '../context/user/UserContext';
+import ProfileIcon from './ProfileIcon';
 
 const StyledNavbar = styled.nav`
   font-size: ${LONG_FONT_SIZE};
@@ -33,15 +34,20 @@ const StyledMainLink = styled(Link)`
 `;
 
 const Navbar = () => {
-  const { isLogged } = useContext(UserContext);
+  const { isLogged, user } = useContext(UserContext);
 
   return (
     <StyledNavbar>
       <div></div>
       <StyledMainLink to="/">Azure</StyledMainLink>
       {isLogged && isLogged() && (
-        <StyledIconProfileLink to="/profile/id">
-          <IconProfile />{' '}
+        <StyledIconProfileLink to={`/profile/${user?.id}`}>
+          <ProfileIcon
+            imageUrl={user?.imageUrl ?? ''}
+            userName={user?.name ?? ''}
+            onlyImage
+            imgSize={ICON_FONT_SIZE}
+          />
         </StyledIconProfileLink>
       )}
     </StyledNavbar>
