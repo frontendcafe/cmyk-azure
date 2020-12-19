@@ -4,10 +4,16 @@ import { SpotifyAuthListener } from 'react-spotify-auth';
 import styled from 'styled-components';
 import SpotifyLoginButton from '../components/SpotifyLoginButton';
 import UserContext from '../context/user/UserContext';
-import { BACKGROUND_COLOR, LONG_FONT_SIZE, PRIMARY_COLOR, SECONDARY_FONT_FAMILY, TEXT_PRIMARY_COLOR } from '../styles/variables';
-import { useHistory } from "react-router-dom";
+import {
+  BACKGROUND_COLOR,
+  LONG_FONT_SIZE,
+  PRIMARY_COLOR,
+  SECONDARY_FONT_FAMILY,
+  TEXT_PRIMARY_COLOR,
+} from '../styles/variables';
+import { useHistory } from 'react-router-dom';
 
-interface Props { }
+interface Props {}
 
 const StyledLoginContainer = styled.div``;
 
@@ -36,12 +42,11 @@ const StyledCenteredDiv = styled.div`
   text-align: center;
 `;
 
-
 const Login: React.FC<Props> = () => {
   const { startSession, isLogged } = useContext(UserContext);
   const history = useHistory();
 
-  isLogged && isLogged() && history.push("/");
+  isLogged && isLogged() && history.push('/');
 
   return (
     <>
@@ -51,13 +56,12 @@ const Login: React.FC<Props> = () => {
             <StyledMainLink>Azure</StyledMainLink>
             <SpotifyLoginButton />
           </StyledCenteredDiv>
-
         </StyledLoginContainer>
       </StyledLayout>
       <SpotifyAuthListener
         onAccessToken={(token: string) => {
           startSession && startSession();
-          history.push("/");
+          history.push('/');
         }}
       />
     </>
