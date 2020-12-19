@@ -9,7 +9,7 @@ const ROUTES = [
     path: '/',
     component: Home,
     name: 'Home',
-    exact: true
+    exact: true,
   },
   {
     path: '/Profile/:profileId',

@@ -5,7 +5,8 @@ import Navbar from '../components/Navbar';
 import { Switch, Route } from 'react-router-dom';
 import Routes from '../routes';
 import UserProvider from '../context/user/UserProvider';
-import AuthenticationContainer from '../components/AuthenticationContainer';
+import { SpotifyApiContext } from 'react-spotify-api';
+import SpotifyToken from '../services/spotify/token';
 
 const StyledLayout = styled.div`
   background-color: ${BACKGROUND_COLOR};
@@ -32,17 +33,17 @@ const Layout = () => {
     });
   };
 
+  const token = SpotifyToken.getActualToken();
+
   return (
-    <UserProvider>
+    <SpotifyApiContext.Provider value={token}>
       <StyledLayout>
         <header>
           <Navbar />
         </header>
-        <AuthenticationContainer>
-          <Switch>{getRoutes(Routes)}</Switch>
-        </AuthenticationContainer>
+        <Switch>{getRoutes(Routes)}</Switch>
       </StyledLayout>
-    </UserProvider>
+    </SpotifyApiContext.Provider>
   );
 };
 

@@ -1,3 +1,4 @@
+import { Console } from 'console';
 import { ReactNode, useEffect, useState } from 'react';
 import useSession from '../../hooks/useSession';
 import User from '../../models/User';
@@ -26,6 +27,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
   const receiveChanges = (
     action: typeof START_SESSION | typeof STOP_SESSION
   ) => {
+    console.log(action);
     switch (action) {
       case START_SESSION: {
         loadUser();
