@@ -4,7 +4,6 @@ import { BACKGROUND_COLOR, TEXT_PRIMARY_COLOR } from '../styles/variables';
 import Navbar from '../components/Navbar';
 import { Switch, Route } from 'react-router-dom';
 import Routes from '../routes';
-import UserProvider from '../context/user/UserProvider';
 import { SpotifyApiContext } from 'react-spotify-api';
 import SpotifyToken from '../services/spotify/token';
 
@@ -15,7 +14,7 @@ const StyledLayout = styled.div`
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: minmax(300px, 1024px);
+  grid-template-columns: minmax(250px, 1024px);
   justify-content: center;
 `;
 

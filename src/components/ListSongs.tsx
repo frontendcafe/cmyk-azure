@@ -14,7 +14,7 @@ const StyledList = styled.ul`
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: minmax(300px, 900px);
+  grid-template-columns: minmax(auto, 900px);
   justify-content: center;
 `;
 
