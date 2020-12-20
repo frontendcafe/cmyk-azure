@@ -59,15 +59,15 @@ const Input = styled.input`
   width: 100%;
   background: #fff;
   padding: 0 1.6rem;
-  border-radius: .7rem;
+  border-radius: 0.7rem;
   appearance: none; //for iOS input[type="search"] roundedness issue. border-radius alone doesn't work
-  transition: all .3s cubic-bezier(0, 0, 0.43, 1.49);
+  transition: all 0.3s cubic-bezier(0, 0, 0.43, 1.49);
   transition-property: width, border-radius;
   z-index: 1;
   position: relative;
 
   &:not(:placeholder-shown) {
-    border-radius: .7rem 0 0 .7rem;
+    border-radius: 0.7rem 0 0 0.7rem;
     width: calc(100% - 6rem);
     + Button {
       display: block;
@@ -89,7 +89,7 @@ const Button = styled.button`
   width: 6rem;
   font-weight: bold;
   background: #57bd84;
-  border-radius: 0 .7rem .7rem 0;
+  border-radius: 0 0.7rem 0.7rem 0;
 `;
 
 const SearchBox: React.FC<Props> = ({ text }) => {

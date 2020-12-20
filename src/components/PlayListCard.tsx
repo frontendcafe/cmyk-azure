@@ -39,24 +39,24 @@ const CardFooter = styled.div`
   color: rgb(75 178 252);
 `;
 
-
-
 const PlayListCard: React.FC<Props> = ({ playList, className }) => {
   const urlImage = playList.imageUrl ? playList.imageUrl : 'Url default';
 
-  function openInNewTab(url : any) {
+  function openInNewTab(url: any) {
     window.open(url, '_blank');
   }
-  
+
   return (
-    <Card imageUrl={urlImage} className={className} onClick={ () => openInNewTab(playList.url) }>
+    <Card
+      imageUrl={urlImage}
+      className={className}
+      onClick={() => openInNewTab(playList.url)}
+    >
       <CardHeader>
         <span>{playList.name}</span> <UserName>{playList.user?.name}</UserName>
       </CardHeader>
       <CardBody></CardBody>
-      <CardFooter>
-        
-      </CardFooter>
+      <CardFooter></CardFooter>
     </Card>
   );
 };

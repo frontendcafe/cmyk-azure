@@ -21,6 +21,7 @@ const breakPointsCarousel = [
 const ContainerCarousel = styled.div`
   .rec-dot {
     box-shadow: 0 0 1px 2px #1292d3;
+    height: 12px;
   }
 
   .rec-dot_active {
@@ -54,12 +55,12 @@ const PlayListCardList: React.FC<Props> = ({ playLists, isCarousel }) => {
           </Carousel>
         </ContainerCarousel>
       ) : (
-        <ContainerPlayLists>
-          {playLists.map((list) => (
-            <PlayListCard playList={list} toggleLike={toggleLike} />
-          ))}
-        </ContainerPlayLists>
-      )}
+          <ContainerPlayLists>
+            {playLists.map((list) => (
+              <PlayListCard playList={list} toggleLike={toggleLike} />
+            ))}
+          </ContainerPlayLists>
+        )}
     </>
   );
 };

@@ -67,8 +67,8 @@ const Home = () => {
         Hi {user?.name ? `, ${user.name}` : ''}!
       </StyledHelloUser>
 
-      <SearchBox text='Prueba search box' />
-      
+      <SearchBox text="Prueba search box" />
+
       <Title>Top recommendations</Title>
       <PlayListCardList playLists={recomendations ?? []} isCarousel />
       <PlaylistDetail playlist={getRecommendation()} />
