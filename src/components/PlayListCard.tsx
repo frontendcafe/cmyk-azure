@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Playlist from '../models/Playlist';
-import img from './img1.jpg';
-
 interface Props {
   playList: Playlist;
   className?: string;
@@ -41,16 +39,23 @@ const CardFooter = styled.div`
   color: rgb(75 178 252);
 `;
 
+
+
 const PlayListCard: React.FC<Props> = ({ playList, className }) => {
   const urlImage = playList.imageUrl ? playList.imageUrl : 'Url default';
+
+  function openInNewTab(url : any) {
+    window.open(url, '_blank');
+  }
+  
   return (
-    <Card imageUrl={urlImage} className={className}>
+    <Card imageUrl={urlImage} className={className} onClick={ () => openInNewTab(playList.url) }>
       <CardHeader>
         <span>{playList.name}</span> <UserName>{playList.user?.name}</UserName>
       </CardHeader>
-      <CardBody>x</CardBody>
+      <CardBody></CardBody>
       <CardFooter>
-        <span>❤</span>
+        
       </CardFooter>
     </Card>
   );
