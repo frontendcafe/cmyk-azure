@@ -2,6 +2,7 @@ export const PRIMARY_COLOR = 'rgb(75 178 252)';
 export const GREY_COLOR = 'grey';
 export const BACKGROUND_COLOR = '#0B0F18';
 export const DANGER_COLOR = '#dc3545';
+export const OVERLAY_COLOR = 'rgba(0,0,0,.8)';
 
 export const SECONDARY_FONT_FAMILY = 'Merriweather';
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Playlist from '../models/Playlist';
+import { OVERLAY_COLOR, PRIMARY_COLOR } from '../styles/variables';
 interface Props {
   playList: Playlist;
   className?: string;
@@ -17,13 +18,15 @@ const Card = styled.div`
   background-image: url(${(props: { imageUrl: string }) => props.imageUrl});
   background-repeat: no-repeat;
   background-size: cover;
+  overflow: hidden;
 `;
 
 const CardHeader = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: 20px;
+  padding: 10px 20px;
+  background-color: ${OVERLAY_COLOR};
 `;
 
 const UserName = styled.span`

@@ -55,12 +55,12 @@ const PlayListCardList: React.FC<Props> = ({ playLists, isCarousel }) => {
           </Carousel>
         </ContainerCarousel>
       ) : (
-          <ContainerPlayLists>
-            {playLists.map((list) => (
-              <PlayListCard playList={list} toggleLike={toggleLike} />
-            ))}
-          </ContainerPlayLists>
-        )}
+        <ContainerPlayLists>
+          {playLists.map((list) => (
+            <PlayListCard playList={list} toggleLike={toggleLike} />
+          ))}
+        </ContainerPlayLists>
+      )}
     </>
   );
 };
