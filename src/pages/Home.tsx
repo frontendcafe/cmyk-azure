@@ -6,6 +6,7 @@ import Modal from '../components/Modal';
 import PlayListCardList from '../components/PlayListCardList';
 import PlaylistDetail from '../components/PlaylistDetail';
 import RecommendationForm from '../components/RecomendationForm';
+import SearchBox from '../components/SearchBox';
 import Title from '../components/Title';
 import UserContext from '../context/user/UserContext';
 import Playlist from '../models/Playlist';
@@ -65,7 +66,9 @@ const Home = () => {
       <StyledHelloUser>
         Hi {user?.name ? `, ${user.name}` : ''}!
       </StyledHelloUser>
-      <p>SearchComponent</p>
+
+      <SearchBox text='Prueba search box' />
+      
       <Title>Top recommendations</Title>
       <PlayListCardList playLists={recomendations ?? []} isCarousel />
       <PlaylistDetail playlist={getRecommendation()} />
