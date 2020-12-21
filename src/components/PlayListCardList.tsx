@@ -8,6 +8,7 @@ interface Props {
   playLists: Array<Playlist>;
   isCarousel: boolean;
   className?: string;
+  handleCardClick?: Function;
 }
 
 const breakPointsCarousel = [
@@ -45,6 +46,7 @@ const PlayListCardList: React.FC<Props> = ({
   playLists,
   isCarousel,
   className,
+  handleCardClick,
 }) => {
   return (
     <>
@@ -56,14 +58,22 @@ const PlayListCardList: React.FC<Props> = ({
             showArrows={false}
           >
             {playLists.map((list) => (
-              <PlayListCard playList={list} toggleLike={toggleLike} />
+              <PlayListCard
+                playList={list}
+                toggleLike={toggleLike}
+                handleClick={handleCardClick}
+              />
             ))}
           </Carousel>
         </ContainerCarousel>
       ) : (
         <ContainerPlayLists className={className}>
           {playLists.map((list) => (
-            <PlayListCard playList={list} toggleLike={toggleLike} />
+            <PlayListCard
+              playList={list}
+              toggleLike={toggleLike}
+              handleClick={handleCardClick}
+            />
           ))}
         </ContainerPlayLists>
       )}

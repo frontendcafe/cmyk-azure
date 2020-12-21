@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import UserContext from '../context/user/UserContext';
 import Playlist from '../models/Playlist';
@@ -8,7 +8,9 @@ import { LIGHT_FONT_WEIGHT, TABLET_BREAKPOINT } from '../styles/variables';
 import ButtonClose from './ButtonClose';
 import ButtonPrimary from './ButtonPrimary';
 import PlayListCard from './PlayListCard';
+import PlayListCardList from './PlayListCardList';
 import ProfileIcon from './ProfileIcon';
+import SearchBox from './SearchBox';
 
 interface Props {
   handleClose?: Function;
@@ -52,9 +54,9 @@ const StyledButtonClose = styled(ButtonClose)`
 `;
 
 const RecomendationForm: React.FC<Props> = ({ handleClose }) => {
-  //TODO: Integrar con el componente SearchComponent
   const [playlists, setPlaylists] = useState<Playlist[] | null>(null);
-  //TODO: El metodo setSelectedPlaylist debe utilizarse en el onchange de SearchComponent
+  const [filter, setFilter] = useState<string>('');
+
   const [selectedPlaylist, setSelectedPlaylist] = useState<Playlist | null>(
     null
   );
@@ -70,10 +72,19 @@ const RecomendationForm: React.FC<Props> = ({ handleClose }) => {
     }
   };
 
+  const search = (value: string) => setFilter(value);
+
+  const getFilteredPlaylists = () => {
+    return (
+      playlists?.filter((playlist) =>
+        playlist.name?.toLowerCase().includes(filter.toLowerCase())
+      ) ?? []
+    );
+  };
+
   useEffect(() => {
     getActualUserPlaylists().then((userPlaylists) => {
       setPlaylists(userPlaylists);
-      setSelectedPlaylist(userPlaylists?.[0] ?? null);
     });
   }, []);
 
@@ -94,10 +105,22 @@ const RecomendationForm: React.FC<Props> = ({ handleClose }) => {
         imgSize="60px"
       />
       {selectedPlaylist ? (
-        <StyledPlayListCard playList={selectedPlaylist} />
+        <StyledPlayListCard
+          playList={selectedPlaylist}
+          handleClick={() => setSelectedPlaylist(null)}
+        />
       ) : (
-        // TODO: SearchComponent debe contener grid-area: card;
-        <p>SearchComponent</p>
+        <>
+          <SearchBox handleChange={search} />
+          <PlayListCardList
+            playLists={getFilteredPlaylists()}
+            isCarousel={false}
+            handleCardClick={(p: Playlist) => {
+              setFilter('');
+              setSelectedPlaylist(p);
+            }}
+          />
+        </>
       )}
     </StyledRecomendationForm>
   );

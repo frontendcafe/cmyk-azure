@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Ref, useRef } from 'react';
 import styled from 'styled-components';
 import {
   BEZ,
@@ -14,6 +14,7 @@ import {
 import { BiSearchAlt } from 'react-icons/bi';
 interface Props {
   text?: string;
+  handleChange?: Function;
 }
 
 const Form = styled.form`
@@ -52,35 +53,42 @@ const Input = styled.input`
   transition-property: width, border-radius;
   z-index: 1;
   position: relative;
+`;
 
-  &:not(:placeholder-shown) {
+/**
+ *   &:not(:placeholder-shown) {
     border-radius: ${RAD} 0 0 ${RAD};
     width: calc(100% - ${BTN_WIDTH});
     + Button {
       display: block;
     }
   }
-`;
+ */
 
-const Button = styled.button`
-  height: ${HEIGHT};
-  font-family: ${FONT_FAM};
-  border: 0;
-  color: ${COLOR_DARK};
-  font-size: 1.8rem;
-  padding: 5px 0 0 0;
+// const Button = styled.button`
+//   height: ${HEIGHT};
+//   font-family: ${FONT_FAM};
+//   border: 0;
+//   color: ${COLOR_DARK};
+//   font-size: 1.8rem;
+//   padding: 5px 0 0 0;
 
-  display: none; // prevent being able to tab to it
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: ${BTN_WIDTH};
-  font-weight: bold;
-  background: ${PRIMARY_COLOR};
-  border-radius: 0 ${RAD} ${RAD} 0;
-`;
+//   display: none; // prevent being able to tab to it
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   width: ${BTN_WIDTH};
+//   font-weight: bold;
+//   background: ${PRIMARY_COLOR};
+//   border-radius: 0 ${RAD} ${RAD} 0;
+// `;
 
-const SearchBox: React.FC<Props> = ({ text }) => {
+const SearchBox: React.FC<Props> = ({ text, handleChange }) => {
+  const reference = useRef<any>();
+
+  const onChangeEvent = () =>
+    handleChange && handleChange(reference.current?.value);
+
   return (
     <Form>
       <Label htmlFor="search">Buscar playlists</Label>
@@ -90,10 +98,12 @@ const SearchBox: React.FC<Props> = ({ text }) => {
         placeholder="Buscar..."
         autoFocus
         required
+        ref={reference}
+        onChange={onChangeEvent}
       />
-      <Button type="submit">
+      {/* <Button type="submit">
         <BiSearchAlt />
-      </Button>
+      </Button> */}
     </Form>
   );
 };

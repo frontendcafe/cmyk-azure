@@ -6,6 +6,7 @@ interface Props {
   playList: Playlist;
   className?: string;
   toggleLike?: (id: number) => void;
+  handleClick?: Function;
 }
 const Card = styled.div`
   width: 200px;
@@ -42,7 +43,11 @@ const CardFooter = styled.div`
   color: rgb(75 178 252);
 `;
 
-const PlayListCard: React.FC<Props> = ({ playList, className }) => {
+const PlayListCard: React.FC<Props> = ({
+  playList,
+  className,
+  handleClick,
+}) => {
   const urlImage = playList.imageUrl ? playList.imageUrl : 'Url default';
 
   function openInNewTab(url: any) {
@@ -53,7 +58,9 @@ const PlayListCard: React.FC<Props> = ({ playList, className }) => {
     <Card
       imageUrl={urlImage}
       className={className}
-      onClick={() => openInNewTab(playList.url)}
+      onClick={() =>
+        handleClick ? handleClick(playList) : openInNewTab(playList.url)
+      }
     >
       <CardHeader>
         <span>{playList.name}</span> <UserName>{playList.user?.name}</UserName>

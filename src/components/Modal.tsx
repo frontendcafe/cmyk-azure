@@ -18,6 +18,12 @@ const StyledModal = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
   position: fixed;
   top: 0;
   right: 0;
@@ -46,7 +52,7 @@ const StyledDivContent = styled.div`
   background-color: ${BACKGROUND_COLOR};
   @media (max-width: ${TABLET_BREAKPOINT}) {
     margin-top: 0;
-    height: 100%;
+    min-height: 100%;
     border-radius: 0;
     width: 100%;
   }

@@ -5,7 +5,7 @@ import FloatingFooter from '../components/FloatingFooter';
 import Modal from '../components/Modal';
 import PlayListCardList from '../components/PlayListCardList';
 import PlaylistDetail from '../components/PlaylistDetail';
-import RecommendationForm from '../components/RecomendationForm';
+
 import SearchBox from '../components/SearchBox';
 import Title from '../components/Title';
 import UserContext from '../context/user/UserContext';
@@ -29,7 +29,6 @@ const StyledHelloUser = styled.p`
 `;
 
 const Home = () => {
-  const modalRecomendationForm = useRef<any>();
   const [recomendations, setRecomendations] = useState<Playlist[] | null>(null);
   const { user } = useContext(UserContext);
 
@@ -72,16 +71,6 @@ const Home = () => {
       <Title>Top recommendations</Title>
       <PlayListCardList playLists={recomendations ?? []} isCarousel />
       <PlaylistDetail playlist={getRecommendation()} />
-      <Modal id="modal" ref={modalRecomendationForm} showHeader={false}>
-        <RecommendationForm
-          handleClose={modalRecomendationForm?.current?.closeModal}
-        />
-      </Modal>
-      <FloatingFooter>
-        <ButtonAdd
-          handleClick={() => modalRecomendationForm?.current?.openModal()}
-        />
-      </FloatingFooter>
     </StyledMain>
   );
 };
