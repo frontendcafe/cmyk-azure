@@ -6,9 +6,10 @@ import Profile from './pages/Profile';
 
 const ROUTES = [
   {
-    path: '/Home',
+    path: '/',
     component: Home,
     name: 'Home',
+    exact: true,
   },
   {
     path: '/Profile/:profileId',

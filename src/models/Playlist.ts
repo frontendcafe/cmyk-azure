@@ -67,6 +67,10 @@ export default class Playlist extends Model {
     }
   }
 
+  set user(value) {
+    this._user = value;
+  }
+
   get user() {
     return this._user;
   }

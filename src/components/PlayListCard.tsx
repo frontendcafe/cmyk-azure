@@ -1,18 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import img from './img1.jpg';
-
-interface PlayList {
-  id: number;
-  name: string;
-  userName: string;
-  url: string;
-  songs: Array<number>;
-}
-
+import Playlist from '../models/Playlist';
+import { OVERLAY_COLOR, PRIMARY_COLOR } from '../styles/variables';
 interface Props {
-  playList: PlayList;
-  toggleLike: (id: number) => void;
+  playList: Playlist;
+  className?: string;
+  toggleLike?: (id: number) => void;
+  handleClick?: Function;
 }
 const Card = styled.div`
   width: 200px;
@@ -22,16 +16,18 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-image: url(${img});
+  background-image: url(${(props: { imageUrl: string }) => props.imageUrl});
   background-repeat: no-repeat;
   background-size: cover;
+  overflow: hidden;
 `;
 
 const CardHeader = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: 20px;
+  padding: 10px 20px;
+  background-color: ${OVERLAY_COLOR};
 `;
 
 const UserName = styled.span`
@@ -47,16 +43,30 @@ const CardFooter = styled.div`
   color: rgb(75 178 252);
 `;
 
-const PlayListCard: React.FC<Props> = ({ playList }) => {
+const PlayListCard: React.FC<Props> = ({
+  playList,
+  className,
+  handleClick,
+}) => {
+  const urlImage = playList.imageUrl ? playList.imageUrl : 'Url default';
+
+  function openInNewTab(url: any) {
+    window.open(url, '_blank');
+  }
+
   return (
-    <Card>
+    <Card
+      imageUrl={urlImage}
+      className={className}
+      onClick={() =>
+        handleClick ? handleClick(playList) : openInNewTab(playList.url)
+      }
+    >
       <CardHeader>
-        <span>{playList.name}</span> <UserName>{playList.userName}</UserName>
+        <span>{playList.name}</span> <UserName>{playList.user?.name}</UserName>
       </CardHeader>
-      <CardBody>x</CardBody>
-      <CardFooter>
-        <span>❤</span>
-      </CardFooter>
+      <CardBody></CardBody>
+      <CardFooter></CardFooter>
     </Card>
   );
 };

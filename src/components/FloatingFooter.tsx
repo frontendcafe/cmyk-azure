@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface Props {
-  children: ReactNode
+  children: ReactNode;
 }
 
 const StyledFloatingFooter = styled.div`
@@ -15,11 +15,7 @@ const StyledFloatingFooter = styled.div`
 `;
 
 const FloatingFooter: React.FC<Props> = ({ children }) => {
-  return (
-    <StyledFloatingFooter>
-      {children}
-    </StyledFloatingFooter>
-  );
+  return <StyledFloatingFooter>{children}</StyledFloatingFooter>;
 };
 
 export default FloatingFooter;

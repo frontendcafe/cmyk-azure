@@ -5,7 +5,11 @@ interface Props {
   children: ReactNode;
 }
 
-const StyledTitle = styled.h2``;
+const StyledTitle = styled.h2`
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+`;
 
 const Title: React.FC<Props> = ({ children }) => {
   return <StyledTitle>{children}</StyledTitle>;

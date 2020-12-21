@@ -44,11 +44,18 @@ const existRecomendation = async (id: string): Promise<boolean> => {
   }
 };
 
-const getRecomendations = async (): Promise<Playlist[] | null> => {
+const getRecomendations = async (
+  userId?: string
+): Promise<Playlist[] | null> => {
   try {
     const instance = getInstance();
     if (instance) {
-      const querySnapshot = await instance.db.collection(COLLECTION_NAME).get();
+      let collection = instance.db.collection(COLLECTION_NAME);
+      let querySnapshot;
+
+      if (userId) collection = collection.where('user.id', '==', userId);
+
+      querySnapshot = await collection.get();
 
       return querySnapshot?.docs
         ? querySnapshot.docs.map(

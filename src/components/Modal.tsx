@@ -1,24 +1,35 @@
 import React, { forwardRef, ReactNode, useImperativeHandle } from 'react';
 import styled from 'styled-components';
-import { BACKGROUND_COLOR, ICON_FONT_SIZE } from '../styles/variables';
+import {
+  BACKGROUND_COLOR,
+  ICON_FONT_SIZE,
+  TABLET_BREAKPOINT,
+} from '../styles/variables';
 import ButtonClose from './ButtonClose';
 
 interface Props {
   children: ReactNode;
   id?: string;
   title?: string;
+  showHeader?: boolean;
 }
 
 const StyledModal = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: center;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(256, 256, 256, 0.1);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 10;
   opacity: 0;
   -webkit-transition: opacity 100ms ease-in;
@@ -32,12 +43,19 @@ const StyledModal = styled.div`
 `;
 
 const StyledDivContent = styled.div`
-  max-width: 800px;
+  margin-top: 5%;
+  max-width: 600px;
   width: 90%;
   position: relative;
-  padding: 20px;
-  border-radius: 3px;
+  padding: 1rem;
+  border-radius: 1rem;
   background-color: ${BACKGROUND_COLOR};
+  @media (max-width: ${TABLET_BREAKPOINT}) {
+    margin-top: 0;
+    min-height: 100%;
+    border-radius: 0;
+    width: 100%;
+  }
 `;
 
 const StyledButtonClose = styled.div`
@@ -64,10 +82,12 @@ const Modal = forwardRef((props: Props, ref) => {
   return (
     <StyledModal role="dialog" id={props.id}>
       <StyledDivContent>
-        <StyledButtonClose>
-          <span>{props.title}</span>
-          <ButtonClose handleClick={close} />
-        </StyledButtonClose>
+        {props.showHeader ?? (
+          <StyledButtonClose>
+            <span>{props.title}</span>
+            <ButtonClose handleClick={close} />
+          </StyledButtonClose>
+        )}
         {props.children}
       </StyledDivContent>
     </StyledModal>

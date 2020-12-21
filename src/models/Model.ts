@@ -30,8 +30,7 @@ export default class Model {
     this._name = name ?? display_name ?? null;
     this._url = url ?? external_urls?.spotify ?? null;
     this._imageUrl =
-      imageUrl ??
-      (images && images.length > 0 ? images[images.length - 1].url : null);
+      imageUrl ?? (images && images.length > 0 ? images[0].url : null);
   }
 
   get id() {

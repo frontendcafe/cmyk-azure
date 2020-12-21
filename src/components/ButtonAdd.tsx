@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonFloat from './ButtonCircle';
+import ButtonPrimary from './ButtonPrimary';
 import IconAdd from './IconAdd';
 
 interface Props {
@@ -8,9 +8,9 @@ interface Props {
 
 const ButtonAdd: React.FC<Props> = ({ handleClick }) => {
   return (
-    <ButtonFloat handleClick={handleClick}>
+    <ButtonPrimary handleClick={handleClick} isCircle isIcon>
       <IconAdd />
-    </ButtonFloat>
+    </ButtonPrimary>
   );
 };
 

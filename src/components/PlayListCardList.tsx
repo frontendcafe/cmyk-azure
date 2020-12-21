@@ -2,18 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import PlayListCard from './PlayListCard';
 import Carousel from 'react-elastic-carousel';
-
-interface PlayList {
-  id: number;
-  name: string;
-  userName: string;
-  url: string;
-  songs: Array<number>;
-}
+import Playlist from '../models/Playlist';
 
 interface Props {
-  playLists: Array<PlayList>;
+  playLists: Array<Playlist>;
   isCarousel: boolean;
+  className?: string;
+  handleCardClick?: Function;
 }
 
 const breakPointsCarousel = [
@@ -25,9 +20,10 @@ const breakPointsCarousel = [
   { width: 1750, itemsToShow: 6, itemsToScroll: 1 },
 ];
 
-const Container = styled.div`
+const ContainerCarousel = styled.div`
   .rec-dot {
     box-shadow: 0 0 1px 2px #1292d3;
+    height: 12px;
   }
 
   .rec-dot_active {
@@ -35,23 +31,53 @@ const Container = styled.div`
   }
 `;
 
+const ContainerPlayLists = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+`;
+
 const toggleLike = () => {
   console.log('Test toggleLike');
 };
 
-const PlayListCardList: React.FC<Props> = ({ playLists, isCarousel }) => {
+const PlayListCardList: React.FC<Props> = ({
+  playLists,
+  isCarousel,
+  className,
+  handleCardClick,
+}) => {
   return (
-    <Container>
-      <Carousel
-        breakPoints={breakPointsCarousel}
-        itemPadding={[0, 10, 0, 0]}
-        showArrows={false}
-      >
-        {playLists.map((list) => (
-          <PlayListCard playList={list} toggleLike={toggleLike} />
-        ))}
-      </Carousel>
-    </Container>
+    <>
+      {isCarousel ? (
+        <ContainerCarousel className={className}>
+          <Carousel
+            breakPoints={breakPointsCarousel}
+            itemPadding={[0, 10, 0, 0]}
+            showArrows={false}
+          >
+            {playLists.map((list) => (
+              <PlayListCard
+                playList={list}
+                toggleLike={toggleLike}
+                handleClick={handleCardClick}
+              />
+            ))}
+          </Carousel>
+        </ContainerCarousel>
+      ) : (
+        <ContainerPlayLists className={className}>
+          {playLists.map((list) => (
+            <PlayListCard
+              playList={list}
+              toggleLike={toggleLike}
+              handleClick={handleCardClick}
+            />
+          ))}
+        </ContainerPlayLists>
+      )}
+    </>
   );
 };
 

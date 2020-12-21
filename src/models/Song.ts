@@ -23,6 +23,10 @@ export default class Song extends Model {
       : '';
   }
 
+  get popularity() {
+    return this._popularity ?? 0;
+  }
+
   constructor({
     id,
     url,

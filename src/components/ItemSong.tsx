@@ -52,7 +52,7 @@ const StyledSongArtist = styled.a`
 
 const ItemSong: React.FC<Props> = ({ song }) => {
   return (
-    <StyledItemSong href={song.url ?? ''}>
+    <StyledItemSong href={song.url ?? ''} target="_blank">
       <StyledSongImage
         src={song.imageUrl ?? ''}
         alt={`Imagen de la cancion ${song.name}, de/los artistas ${song.artist}`}
