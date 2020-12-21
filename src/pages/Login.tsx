@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import { SpotifyAuthListener } from 'react-spotify-auth';
 import styled from 'styled-components';
+import bgImage from './bgImage.png';
 import SpotifyLoginButton from '../components/SpotifyLoginButton';
 import UserContext from '../context/user/UserContext';
 import {
@@ -17,16 +18,34 @@ interface Props {}
 
 const StyledLoginContainer = styled.div``;
 
+const BgImage = styled.div`
+  /* The image used */
+  background-image: url(${bgImage});
+
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  /* Full height */
+  height: 100vh;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+`;
+
 const StyledLayout = styled.div`
-  background-color: ${BACKGROUND_COLOR};
+  background: ${BACKGROUND_COLOR};
   color: ${TEXT_PRIMARY_COLOR};
-  min-height: 100vh;
-  height: 100%;
-  width: 100%;
+  position: absolute;
+  top: 40%;
+  left: 43%;
   display: flex;
   align-items: center;
   justify-content: center;
   justify-content: center;
+  border: 1px solid white;
 `;
 
 const StyledMainLink = styled.p`
@@ -50,6 +69,7 @@ const Login: React.FC<Props> = () => {
 
   return (
     <>
+      <BgImage></BgImage>
       <StyledLayout>
         <StyledLoginContainer>
           <StyledCenteredDiv>
