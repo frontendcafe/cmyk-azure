@@ -17,3 +17,14 @@ export const NORMAL_FONT_WEIGHT = '400';
 export const BOLD_FONT_WEIGHT = '700';
 
 export const TABLET_BREAKPOINT = '768px';
+
+// Search Box
+
+export const RAD = '.7rem';
+export const DUR = '.3s';
+export const COLOR_DARK = '#2f2f2f';
+export const COLOR_LIGHT = '#fff';
+export const FONT_FAM = "'Lato', sans-serif";
+export const HEIGHT = '40px';
+export const BTN_WIDTH = '3rem';
+export const BEZ = 'cubic-bezier(0, 0, 0.43, 1.49)';

@@ -1,41 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { BEZ, BTN_WIDTH, COLOR_DARK, COLOR_LIGHT, DUR, FONT_FAM, HEIGHT, PRIMARY_COLOR, RAD } from '../styles/variables';
+import { BiSearchAlt } from 'react-icons/bi';
 interface Props {
   text?: string;
 }
 
-const Card = styled.div`
-  width: 200px;
-  height: 200px;
-  border: none;
-  border-radius: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-image: url(${(props: { imageUrl: string }) => props.imageUrl});
-  background-repeat: no-repeat;
-  background-size: cover;
-`;
-
-const CardHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-left: 20px;
-`;
-
-const UserName = styled.span`
-  color: rgb(75 178 252);
-`;
-
-const CardBody = styled.div``;
-
 const Form = styled.form`
   position: relative;
-  width: 30rem;
-  background: #57bd84;
-  border-radius: 0.7rem;
+  width: 20rem;
+  background: ${PRIMARY_COLOR};
+  border-radius: ${RAD};
+  font-size: 1.2rem;
+
 `;
 
 const Label = styled.label`
@@ -49,26 +26,26 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-  height: 5rem;
-  font-family: 'Lato', sans-serif;
+  height:  ${HEIGHT};
+  font-family:  ${FONT_FAM};
   border: 0;
-  color: #2f2f2f;
-  font-size: 1.8rem;
+  color:  ${COLOR_DARK};
+  font-size: 1.2rem;
 
-  outline: 0; // <-- shold probably remove this for better accessibility, adding for demo aesthetics for now.
+  outline: 0;
   width: 100%;
-  background: #fff;
+  background:  ${COLOR_LIGHT};
   padding: 0 1.6rem;
-  border-radius: 0.7rem;
-  appearance: none; //for iOS input[type="search"] roundedness issue. border-radius alone doesn't work
-  transition: all 0.3s cubic-bezier(0, 0, 0.43, 1.49);
+  border-radius:  ${RAD};
+  appearance: none;
+  transition: all  ${DUR} ${BEZ};
   transition-property: width, border-radius;
   z-index: 1;
   position: relative;
 
   &:not(:placeholder-shown) {
-    border-radius: 0.7rem 0 0 0.7rem;
-    width: calc(100% - 6rem);
+    border-radius: ${RAD} 0 0 ${RAD};
+    width: calc(100% - ${BTN_WIDTH});
     + Button {
       display: block;
     }
@@ -76,20 +53,21 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  height: 5rem;
-  font-family: 'Lato', sans-serif;
+   height:  ${HEIGHT};
+  font-family:  ${FONT_FAM};
   border: 0;
-  color: #2f2f2f;
+  color:  ${COLOR_DARK};
   font-size: 1.8rem;
-
+  padding: 5px 0 0 0;
+  
   display: none; // prevent being able to tab to it
   position: absolute;
   top: 0;
   right: 0;
-  width: 6rem;
+  width: ${BTN_WIDTH};
   font-weight: bold;
-  background: #57bd84;
-  border-radius: 0 0.7rem 0.7rem 0;
+  background: ${PRIMARY_COLOR};
+  border-radius: 0 ${RAD} ${RAD} 0;
 `;
 
 const SearchBox: React.FC<Props> = ({ text }) => {
@@ -103,7 +81,7 @@ const SearchBox: React.FC<Props> = ({ text }) => {
         autoFocus
         required
       />
-      <Button type="submit">Ir</Button>
+      <Button type="submit"><BiSearchAlt /></Button>
     </Form>
   );
 };
