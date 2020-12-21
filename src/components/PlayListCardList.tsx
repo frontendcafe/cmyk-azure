@@ -7,6 +7,7 @@ import Playlist from '../models/Playlist';
 interface Props {
   playLists: Array<Playlist>;
   isCarousel: boolean;
+  className?: string;
 }
 
 const breakPointsCarousel = [
@@ -33,17 +34,22 @@ const ContainerPlayLists = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
+  justify-content: center;
 `;
 
 const toggleLike = () => {
   console.log('Test toggleLike');
 };
 
-const PlayListCardList: React.FC<Props> = ({ playLists, isCarousel }) => {
+const PlayListCardList: React.FC<Props> = ({
+  playLists,
+  isCarousel,
+  className,
+}) => {
   return (
     <>
       {isCarousel ? (
-        <ContainerCarousel>
+        <ContainerCarousel className={className}>
           <Carousel
             breakPoints={breakPointsCarousel}
             itemPadding={[0, 10, 0, 0]}
@@ -55,7 +61,7 @@ const PlayListCardList: React.FC<Props> = ({ playLists, isCarousel }) => {
           </Carousel>
         </ContainerCarousel>
       ) : (
-        <ContainerPlayLists>
+        <ContainerPlayLists className={className}>
           {playLists.map((list) => (
             <PlayListCard playList={list} toggleLike={toggleLike} />
           ))}
