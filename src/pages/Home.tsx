@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { getSourceMapRange } from 'typescript';
 import ButtonAdd from '../components/ButtonAdd';
 import FloatingFooter from '../components/FloatingFooter';
 import Modal from '../components/Modal';
@@ -30,6 +31,7 @@ const StyledHelloUser = styled.p`
 
 const Home = () => {
   const [recomendations, setRecomendations] = useState<Playlist[] | null>(null);
+  const [filter, setFilter] = useState<string>('');
   const { user } = useContext(UserContext);
 
   const getRecommendation = (): Playlist | null => {
@@ -42,15 +44,15 @@ const Home = () => {
     getRecomendations().then(async (recommendedPlaylists) => {
       const spotifyPlaylists = recommendedPlaylists
         ? await Promise.all(
-            recommendedPlaylists.map(async (playlist) => {
-              const sPlaylist = playlist.id
-                ? await getPlaylistById(playlist.id)
-                : null;
+          recommendedPlaylists.map(async (playlist) => {
+            const sPlaylist = playlist.id
+              ? await getPlaylistById(playlist.id)
+              : null;
 
-              if (sPlaylist) await sPlaylist.fillSongs();
-              return sPlaylist;
-            })
-          )
+            if (sPlaylist) await sPlaylist.fillSongs();
+            return sPlaylist;
+          })
+        )
         : null;
 
       if (spotifyPlaylists) {
@@ -60,17 +62,23 @@ const Home = () => {
     });
   }, []);
 
+  const getFilteredRecomendations = (): Playlist[] =>
+    recomendations?.filter((playlist) =>
+      playlist.name?.toLowerCase().includes(filter.toLowerCase())
+    ) ?? [];
+
   return (
     <StyledMain>
       <StyledHelloUser>
         Hi {user?.name ? `, ${user.name}` : ''}!
       </StyledHelloUser>
 
-      <SearchBox text="Prueba search box" />
+      <SearchBox text="Prueba search box" handleChange={setFilter} />
 
       <Title>Top recommendations</Title>
-      <PlayListCardList playLists={recomendations ?? []} isCarousel />
-      <PlaylistDetail playlist={getRecommendation()} />
+      <PlayListCardList playLists={getFilteredRecomendations()} isCarousel />
+      {filter === '' && <PlaylistDetail playlist={getRecommendation()} />}
+
     </StyledMain>
   );
 };
