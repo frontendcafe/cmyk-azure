@@ -1,6 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BEZ, BTN_WIDTH, COLOR_DARK, COLOR_LIGHT, DUR, FONT_FAM, HEIGHT, PRIMARY_COLOR, RAD } from '../styles/variables';
+import {
+  BEZ,
+  BTN_WIDTH,
+  COLOR_DARK,
+  COLOR_LIGHT,
+  DUR,
+  FONT_FAM,
+  HEIGHT,
+  PRIMARY_COLOR,
+  RAD,
+} from '../styles/variables';
 import { BiSearchAlt } from 'react-icons/bi';
 interface Props {
   text?: string;
@@ -8,11 +18,11 @@ interface Props {
 
 const Form = styled.form`
   position: relative;
-  width: 20rem;
+  width: 100%;
   background: ${PRIMARY_COLOR};
   border-radius: ${RAD};
   font-size: 1.2rem;
-
+  margin: 1rem 0;
 `;
 
 const Label = styled.label`
@@ -26,19 +36,19 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-  height:  ${HEIGHT};
-  font-family:  ${FONT_FAM};
+  height: ${HEIGHT};
+  font-family: ${FONT_FAM};
   border: 0;
-  color:  ${COLOR_DARK};
+  color: ${COLOR_DARK};
   font-size: 1.2rem;
 
   outline: 0;
   width: 100%;
-  background:  ${COLOR_LIGHT};
+  background: ${COLOR_LIGHT};
   padding: 0 1.6rem;
-  border-radius:  ${RAD};
+  border-radius: ${RAD};
   appearance: none;
-  transition: all  ${DUR} ${BEZ};
+  transition: all ${DUR} ${BEZ};
   transition-property: width, border-radius;
   z-index: 1;
   position: relative;
@@ -53,13 +63,13 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-   height:  ${HEIGHT};
-  font-family:  ${FONT_FAM};
+  height: ${HEIGHT};
+  font-family: ${FONT_FAM};
   border: 0;
-  color:  ${COLOR_DARK};
+  color: ${COLOR_DARK};
   font-size: 1.8rem;
   padding: 5px 0 0 0;
-  
+
   display: none; // prevent being able to tab to it
   position: absolute;
   top: 0;
@@ -81,7 +91,9 @@ const SearchBox: React.FC<Props> = ({ text }) => {
         autoFocus
         required
       />
-      <Button type="submit"><BiSearchAlt /></Button>
+      <Button type="submit">
+        <BiSearchAlt />
+      </Button>
     </Form>
   );
 };
