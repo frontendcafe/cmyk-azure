@@ -10,5 +10,5 @@ Con respecto a la informacion, consumimos la API de spotify para el login y guar
 
 ### 💻 Integrantes 
  * [Renzo Tejada](https://github.com/RnzTejada)
- * [Alexandro Munera](https://github.com/AlexandroMunera)
+ * [Freud Múnera](https://github.com/AlexandroMunera)
  * [Agustin Vazquez](https://github.com/9gustin)
