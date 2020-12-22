@@ -39,7 +39,7 @@ const Navbar = () => {
   return (
     <StyledNavbar>
       <div></div>
-      <StyledMainLink to="/">Azure</StyledMainLink>
+      <StyledMainLink to="/">song𝓢hare</StyledMainLink>
       {isLogged && isLogged() && (
         <StyledIconProfileLink to={`/profile/${user?.id}`}>
           <ProfileIcon
