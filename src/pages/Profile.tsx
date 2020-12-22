@@ -25,15 +25,16 @@ const Profile = () => {
     getRecomendations(profileId).then(async (recommendedPlaylists) => {
       const spotifyPlaylists = recommendedPlaylists
         ? await Promise.all(
-            recommendedPlaylists.map(async (playlist) => {
-              const sPlaylist = playlist.id
-                ? await getPlaylistById(playlist.id)
-                : null;
+          recommendedPlaylists.map(async (playlist) => {
+            const sPlaylist = playlist.id
+              ? await getPlaylistById(playlist.id)
+              : null;
 
-              if (sPlaylist) await sPlaylist.fillSongs();
-              return sPlaylist;
-            })
-          )
+            if (sPlaylist) await sPlaylist.fillSongs();
+
+            return sPlaylist;
+          })
+        )
         : null;
 
       if (spotifyPlaylists) {

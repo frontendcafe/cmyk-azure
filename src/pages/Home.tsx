@@ -44,15 +44,19 @@ const Home = () => {
     getRecomendations().then(async (recommendedPlaylists) => {
       const spotifyPlaylists = recommendedPlaylists
         ? await Promise.all(
-            recommendedPlaylists.map(async (playlist) => {
-              const sPlaylist = playlist.id
-                ? await getPlaylistById(playlist.id)
-                : null;
+          recommendedPlaylists.map(async (playlist) => {
+            const sPlaylist = playlist.id
+              ? await getPlaylistById(playlist.id)
+              : null;
 
-              if (sPlaylist) await sPlaylist.fillSongs();
-              return sPlaylist;
-            })
-          )
+            if (sPlaylist) {
+              sPlaylist.user = playlist.user;
+              await sPlaylist.fillSongs();
+              await sPlaylist.fillUser();
+            }
+            return sPlaylist;
+          })
+        )
         : null;
 
       if (spotifyPlaylists) {

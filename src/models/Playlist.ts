@@ -14,6 +14,7 @@ interface Props {
   url?: string;
   songs?: Song[] | [];
   user?: any;
+  _user?: any;
   owner?: any;
   recommendations?: Recomendation[] | [];
   songsCount?: number;
@@ -40,6 +41,7 @@ export default class Playlist extends Model {
     url,
     songs,
     user,
+    _user,
     recommendations,
     external_urls,
     imageUrl,
@@ -54,11 +56,17 @@ export default class Playlist extends Model {
     this._songsCount = songsCount ?? (tracks?.total ? tracks.total : null);
     this._owner = owner ? new User(owner) : null;
     this._recommendations = recommendations ?? null;
-    this._user = user ? new User(user) : null;
+
+    const jsonUser = user ?? _user;
+    this._user = jsonUser ? new User(jsonUser) : null;
   }
 
   async fillOwner() {
-    if (this._owner) this._owner.fill();
+    if (this._owner) await this._owner.fill();
+  }
+
+  async fillUser() {
+    if (this._user) await this._user.fill();
   }
 
   async fillSongs() {
@@ -73,6 +81,9 @@ export default class Playlist extends Model {
 
   get user() {
     return this._user;
+  }
+  get owner() {
+    return this._owner;
   }
   get songs() {
     return this._songs;
