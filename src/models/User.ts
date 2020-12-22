@@ -2,6 +2,7 @@ import { getUserById } from '../services/spotify/user';
 import Model from './Model';
 
 interface Props {
+  _id?: string;
   id?: string;
   name?: string;
   email?: string;
@@ -17,6 +18,7 @@ export default class User extends Model {
 
   constructor({
     id,
+    _id,
     name,
     display_name,
     email,
@@ -25,7 +27,7 @@ export default class User extends Model {
     external_urls,
     url,
   }: Props) {
-    super({ id, name, display_name, images, imageUrl, url, external_urls });
+    super({ id: id ?? _id, name, display_name, images, imageUrl, url, external_urls });
     this._email = email ?? null;
   }
 

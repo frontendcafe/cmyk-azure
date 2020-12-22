@@ -49,6 +49,7 @@ const PlayListCard: React.FC<Props> = ({
   handleClick,
 }) => {
   const urlImage = playList.imageUrl ? playList.imageUrl : 'Url default';
+  const user = playList.user ?? playList.owner;
 
   function openInNewTab(url: any) {
     window.open(url, '_blank');
@@ -63,7 +64,7 @@ const PlayListCard: React.FC<Props> = ({
       }
     >
       <CardHeader>
-        <span>{playList.name}</span> <UserName>{playList.user?.name}</UserName>
+        <span>{playList.name}</span> <UserName>{user?.name}</UserName>
       </CardHeader>
       <CardBody></CardBody>
       <CardFooter></CardFooter>

@@ -15,7 +15,6 @@ const StyledLayout = styled.div`
   background-color: ${BACKGROUND_COLOR};
   color: ${TEXT_PRIMARY_COLOR};
   min-height: 100vh;
-  height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: minmax(250px, 1024px);
@@ -49,6 +48,7 @@ const Layout = () => {
         <Modal id="modal" ref={modalRecomendationForm} showHeader={false}>
           <RecommendationForm
             handleClose={() => modalRecomendationForm?.current?.closeModal()}
+          // handleRecommend={}
           />
         </Modal>
         <FloatingFooter>

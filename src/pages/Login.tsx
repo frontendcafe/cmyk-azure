@@ -39,6 +39,7 @@ const BgImage = styled.div`
   left:0;
   right:0;
   z-index: -1;
+  opacity: .9;
 `;
 
 const StyledLayout = styled.div`
@@ -55,6 +56,7 @@ const StyledMainLink = styled.p`
   text-decoration: none;
   font-family: ${SECONDARY_FONT_FAMILY};
   font-size: ${LONG_FONT_SIZE};
+  text-shadow: 2px 2px ${BACKGROUND_COLOR};
 `;
 
 const StyledCenteredDiv = styled.div`

@@ -14,6 +14,7 @@ import SearchBox from './SearchBox';
 
 interface Props {
   handleClose?: Function;
+  handleRecommend?: Function;
 }
 
 const StyledRecomendationForm = styled.form`
@@ -53,7 +54,7 @@ const StyledButtonClose = styled(ButtonClose)`
   justify-self: flex-start;
 `;
 
-const RecomendationForm: React.FC<Props> = ({ handleClose }) => {
+const RecomendationForm: React.FC<Props> = ({ handleClose, handleRecommend }) => {
   const [playlists, setPlaylists] = useState<Playlist[] | null>(null);
   const [filter, setFilter] = useState<string>('');
 
@@ -67,7 +68,11 @@ const RecomendationForm: React.FC<Props> = ({ handleClose }) => {
       selectedPlaylist.user = user;
 
       addRecommendation(selectedPlaylist).then(
-        () => handleClose && handleClose()
+        () => {
+          setSelectedPlaylist(null);
+          handleClose && handleClose();
+          handleRecommend && handleRecommend()
+        }
       );
     }
   };
@@ -96,8 +101,8 @@ const RecomendationForm: React.FC<Props> = ({ handleClose }) => {
           Recommend
         </StyledRecomendationButton>
       ) : (
-        ''
-      )}
+          ''
+        )}
       <StyledProfileIcon
         imageUrl={user?.imageUrl ?? ''}
         userName={user?.name ?? ''}
@@ -110,18 +115,18 @@ const RecomendationForm: React.FC<Props> = ({ handleClose }) => {
           handleClick={() => setSelectedPlaylist(null)}
         />
       ) : (
-        <>
-          <SearchBox handleChange={search} />
-          <PlayListCardList
-            playLists={getFilteredPlaylists()}
-            isCarousel={false}
-            handleCardClick={(p: Playlist) => {
-              setFilter('');
-              setSelectedPlaylist(p);
-            }}
-          />
-        </>
-      )}
+          <>
+            <SearchBox handleChange={search} />
+            <PlayListCardList
+              playLists={getFilteredPlaylists()}
+              isCarousel={false}
+              handleCardClick={(p: Playlist) => {
+                setFilter('');
+                setSelectedPlaylist(p);
+              }}
+            />
+          </>
+        )}
     </StyledRecomendationForm>
   );
 };
