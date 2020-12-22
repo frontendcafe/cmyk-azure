@@ -75,7 +75,7 @@ const Login: React.FC<Props> = () => {
       <StyledLayout>
         <StyledLoginContainer>
           <StyledCenteredDiv>
-            <StyledMainLink>Azure</StyledMainLink>
+            <StyledMainLink>song𝓢hare</StyledMainLink>
             <SpotifyLoginButton />
           </StyledCenteredDiv>
         </StyledLoginContainer>
