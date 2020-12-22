@@ -44,15 +44,15 @@ const Home = () => {
     getRecomendations().then(async (recommendedPlaylists) => {
       const spotifyPlaylists = recommendedPlaylists
         ? await Promise.all(
-          recommendedPlaylists.map(async (playlist) => {
-            const sPlaylist = playlist.id
-              ? await getPlaylistById(playlist.id)
-              : null;
+            recommendedPlaylists.map(async (playlist) => {
+              const sPlaylist = playlist.id
+                ? await getPlaylistById(playlist.id)
+                : null;
 
-            if (sPlaylist) await sPlaylist.fillSongs();
-            return sPlaylist;
-          })
-        )
+              if (sPlaylist) await sPlaylist.fillSongs();
+              return sPlaylist;
+            })
+          )
         : null;
 
       if (spotifyPlaylists) {
@@ -78,7 +78,6 @@ const Home = () => {
       <Title>Top recommendations</Title>
       <PlayListCardList playLists={getFilteredRecomendations()} isCarousel />
       {filter === '' && <PlaylistDetail playlist={getRecommendation()} />}
-
     </StyledMain>
   );
 };
