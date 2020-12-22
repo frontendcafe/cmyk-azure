@@ -14,7 +14,7 @@ import {
 } from '../styles/variables';
 import { useHistory } from 'react-router-dom';
 
-interface Props {}
+interface Props { }
 
 const StyledLoginContainer = styled.div``;
 
@@ -30,22 +30,22 @@ const BgImage = styled.div`
   height: 100vh;
 
   /* Center and scale the image nicely */
-  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  transform: scale(1.1);
+  position: fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index: -1;
 `;
 
 const StyledLayout = styled.div`
-  background: ${BACKGROUND_COLOR};
   color: ${TEXT_PRIMARY_COLOR};
-  position: absolute;
-  top: 40%;
-  left: 43%;
   display: flex;
   align-items: center;
   justify-content: center;
-  justify-content: center;
-  border: 1px solid white;
 `;
 
 const StyledMainLink = styled.p`
