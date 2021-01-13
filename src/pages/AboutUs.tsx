@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { BACKGROUND_COLOR, TEXT_PRIMARY_COLOR } from '../styles/variables';
 import CardMember from '../components/CardMember';
+import LandingNavbar from '../components/LandingNavbar';
 
 interface Props {}
 
@@ -17,7 +18,9 @@ const StyledLayout = styled.div`
 
 const StyledText = styled.div`
   margin-top: 40px;
+  padding: 0 20px;
   diplay: flex;
+  text-align: center;
   justify-content: center;
   align-items: center;
 `;
@@ -32,21 +35,24 @@ const members = [
     name: 'Renzo Tejada',
     job: 'Front End Dev',
     description:
-      'I am constantly interested in facing new challenges. Fan of technology, crypto and fashion. Fanatic for innovating in all the environments of my life trying to give the maximum in everything I do.',
+      'Me interesa constantemente afrontar nuevos retos. Fanático de la tecnología, las criptomonedas y la moda. Fanático por innovar en todos los entornos de mi vida intentando dar el máximo en todo lo que hago.',
     github: 'https://github.com/RnzTejada',
     linkedin: 'https://www.linkedin.com/in/renzo-emiliano-tejada-329248192/',
   },
   {
-    name: 'Freud Munera',
+    name: 'Freud Múnera',
     job: 'Front End Dev',
-    description: 'description',
+    description: `Soy un desarrollador de software con experiencia en los entornos web y mobil. Me gusta resolver
+problemas y conocer nuevas personas, tengo pensamiento critico y disfruto mucho aprender nuevas
+cosas. Los retos me llaman la atencion y constantemente asisto a charlas o talleres sobre tecnologia. Tengo las habilidades necesarias pare trabajar en cualquier etapa del ciclo de vida de un desarrollo de
+software y me integro rapidamente`,
     github: 'https://github.com/AlexandroMunera',
     linkedin: 'https://www.linkedin.com/in/freud-alexandro/',
   },
   {
     name: 'Agustin Vazquez',
     job: 'Js Developer',
-    description: 'description',
+    description: `Desde Córdoba, Argentina 🏘️ . Si tengo que elegir 2 palabras para definirme serian Auténtico y Versátil.`,
     github: 'https://github.com/9gustin',
     linkedin: 'https://www.linkedin.com/in/vazquezagustin/',
   },
@@ -56,12 +62,18 @@ const AboutUs: React.FC<Props> = () => {
   return (
     <>
       <StyledLayout>
+        <LandingNavbar />
         <StyledText>
           <h4>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet,
-            sequi rem? Libero ipsa, quam ut nulla perferendis quasi distinctio
-            rerum quis saepe nemo, officiis mollitia, dolorum delectus
-            praesentium quae laborum.
+            Una app para recomendar y encontrar playlists de Spotify! <br />
+            Song Share nace a partir de los proyectos CMYK++ de{' '}
+            <a
+              href="https://frontend.cafe/"
+              style={{ color: '#4BB2FC' }}
+              target="_blank"
+            >
+              Frontend Café
+            </a>
           </h4>
         </StyledText>
         <Title>Miembros</Title>
