@@ -6,7 +6,13 @@ import ImgCassette from '../components/ImgCassette';
 import LandingNavbar from '../components/LandingNavbar';
 import SpotifyLoginButton from '../components/SpotifyLoginButton';
 import UserContext from '../context/user/UserContext';
-import { BACKGROUND_COLOR, MEDIUM_FONT_SIZE, PRIMARY_COLOR, TABLET_BREAKPOINT, TEXT_PRIMARY_COLOR } from '../styles/variables';
+import {
+  BACKGROUND_COLOR,
+  MEDIUM_FONT_SIZE,
+  PRIMARY_COLOR,
+  TABLET_BREAKPOINT,
+  TEXT_PRIMARY_COLOR,
+} from '../styles/variables';
 import { SpotifyAuthListener } from 'react-spotify-auth';
 
 const StyledLayout = styled.div`
@@ -26,10 +32,10 @@ const StyledLayout = styled.div`
 const StyledMain = styled.main`
   display: grid;
   grid-template-columns: 70% 30%;
-  &>*{
+  & > * {
     align-self: center;
   }
-  @media (max-width:1300px) {
+  @media (max-width: 1300px) {
     grid-template-columns: 60% 40%;
   }
   @media (max-width: ${TABLET_BREAKPOINT}) {
@@ -47,7 +53,7 @@ const StyledTitle = styled.h2`
   font-size: 3.5rem;
   margin: 0;
   width: 60%;
-  @media (max-width:1000px) {
+  @media (max-width: 1000px) {
     font-size: 2.5rem;
   }
   @media (max-width: ${TABLET_BREAKPOINT}) {
@@ -62,7 +68,7 @@ const StyledSubtitle = styled.p`
 
 const StyledLoginButton = styled(SpotifyLoginButton)`
   cursor: pointer;
-  background: #1DB954;
+  background: #1db954;
   border: none;
   outline: none;
   color: ${TEXT_PRIMARY_COLOR};
@@ -71,9 +77,9 @@ const StyledLoginButton = styled(SpotifyLoginButton)`
   align-items: center;
   border-radius: 2rem;
   font-size: ${MEDIUM_FONT_SIZE};
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   text-transform: uppercase;
-  margin-top:1.5rem;
+  margin-top: 1.5rem;
 `;
 
 const Landing = () => {
@@ -86,8 +92,8 @@ const Landing = () => {
     {
       id: '1',
       name: 'About Us',
-      to: '/about-us'
-    }
+      to: '/aboutus',
+    },
   ];
 
   return (
