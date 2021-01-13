@@ -5,17 +5,20 @@ import 'react-spotify-auth/dist/index.css';
 
 interface Props {
   scopes?: [];
+  className?: string;
 }
 
 const SpotifyLoginButton: React.FC<Props> = ({
   scopes = ['user-read-email', 'playlist-read-private'],
+  className
 }) => {
   return (
     <SpotifyAuth
       redirectUri={REDIRECT_URI}
       clientID={CLIENT_ID}
       scopes={scopes}
-      title="Entra con Spotify!"
+      title="Ingresa con Spotify"
+      btnClassName={className}
     />
   );
 };
