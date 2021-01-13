@@ -10,6 +10,7 @@ import {
 } from '../styles/variables';
 import UserContext from '../context/user/UserContext';
 import ProfileIcon from './ProfileIcon';
+import Brand from './Brand';
 
 const StyledNavbar = styled.nav`
   font-size: ${LONG_FONT_SIZE};
@@ -25,7 +26,7 @@ const StyledIconProfileLink = styled(Link)`
   color: ${TEXT_PRIMARY_COLOR};
 `;
 
-const StyledMainLink = styled(Link)`
+const StyledLink = styled(Link)`
   justify-self: center;
   color: ${PRIMARY_COLOR};
   outline: none;
@@ -33,13 +34,14 @@ const StyledMainLink = styled(Link)`
   font-family: ${SECONDARY_FONT_FAMILY};
 `;
 
+
 const Navbar = () => {
   const { isLogged, user } = useContext(UserContext);
 
   return (
     <StyledNavbar>
       <div></div>
-      <StyledMainLink to="/">song𝓢hare</StyledMainLink>
+      <StyledLink to="/"><Brand /></StyledLink>
       {isLogged && isLogged() && (
         <StyledIconProfileLink to={`/profile/${user?.id}`}>
           <ProfileIcon
