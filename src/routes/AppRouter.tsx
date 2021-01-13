@@ -5,6 +5,7 @@ import NotFound from '../pages/NotFound';
 import PrivateRoute from '../components/PrivateRoute';
 import Login from '../pages/Login';
 import UserProvider from '../context/user/UserProvider';
+import AboutUs from '../pages/AboutUs';
 
 const AppRouter = () => {
   return (
@@ -13,7 +14,7 @@ const AppRouter = () => {
         <Router>
           <Switch>
             <Route path="/login" render={(props) => <Login {...props} />} />
-
+            <Route path="/aboutus" render={(props) => <AboutUs {...props} />} />
             <PrivateRoute path="/">
               <Layout />
             </PrivateRoute>
